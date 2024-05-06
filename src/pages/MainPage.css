@@ -1,0 +1,229 @@
+*{
+    margin: 0;
+    padding:0;
+}
+@media screen and (max-width: 765px) and (min-width: 300px) {
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table{
+        width:100%;
+    }
+}
+
+.title {         
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+fieldset {
+    margin: 10px 0;
+}
+
+h1{margin-top: 20px; margin-bottom: 40px; font-weight: bolder;}
+h2{margin-top: 20px; margin-bottom: 40px; font-weight: bolder;}
+h3{margin-top: 20px; margin-bottom: 40px; font-weight: bolder;}
+p{margin-top: 20px; margin-bottom: 20px;}
+
+.main {
+    position: relative;                      
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-top: 0px;
+}
+.specialers{
+    padding:0px
+}
+
+.main_image{
+    position: relative;
+}
+.m_i_specialers{
+    position: absolute;
+    margin-top: -620px;
+    margin-left: 560px;
+    transform: translate( -50%, -50% );
+    color: #FFF;
+    font-size: 5px;
+    width: 1000px;
+}
+.m_i_text{
+    position: absolute;
+    margin-top: -550px;
+    margin-left: 390px;
+    transform: translate( -50%, -50% );
+    color: #FFF;
+    font-size: 25px;
+    width: 500px;
+}
+.m_i_salmon{
+    position: absolute;
+    margin-top: 600px;
+    margin-left: -1590px;
+    transform: translate( -50%, -50% );
+    font-size: 23px;
+    text-decoration: none;
+    
+    /*
+    border-radius: 50px;
+    border: 1px solid #FFF;
+    border-width: 2px;
+    */
+    color: #FFF;
+    background-color: transparent;
+    padding: 5px;
+    width: 200px;
+}
+
+.circle_001 {
+    position: absolute;
+    top: 74%;
+    left: 50%;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFF;
+    
+}
+.circle_002 {
+    position: absolute;
+    top: 74%;
+    left: 47%;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFF;    
+}
+.circle_003 {
+    position: absolute;
+    top: 74%;
+    left: 53%;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+.circle_01 {
+    position: absolute;
+    top: 74%;
+    left: 50%;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: transparent;
+}
+.circle_02 {
+    position: absolute;
+    top: 74%;
+    left: 47%;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: transparent;
+}
+.circle_03 {
+    position: absolute;
+    top: 74%;
+    left: 53%;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background-color: transparent;
+}
+
+
+.a{
+    text-align: left;
+    padding: 100px 0px;
+    padding-left: 240px;
+    margin-top: 50px;
+}
+.aa{
+    padding-left: 700px;
+    margin-top: -130px;
+    font-size: 20px;
+}
+
+
+.image1_container {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 42px;
+}
+
+.image_and_text {
+    position: relative;
+}
+.image_and_text img{
+    padding: 0px 5px;
+}
+
+.image_text {
+    position: absolute;
+    top: 90px; 
+    left: 62%; 
+    transform: translateX(-50%); 
+    margin: 0px -80px;
+    text-align: center; 
+    color: #FFF;
+}
+.button_main{
+    position: absolute;
+    top: 300px; 
+    left: 75%; 
+    transform: translateX(-50%); 
+    margin: 0px -70px;
+    text-align: center; 
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.image2{
+    padding: 0px 10px;
+    padding-bottom: 120px;
+}
+.image2 img{
+    padding: 0px 30px;
+}
+
+footer {
+    border-top: 1px solid #ccc;                          
+    background-color: #E3E3E3;
+    color: #515151;
+    clear: both;
+    height: 20vh;
+    line-height: 8px;
+
+}
+.footer_link{
+    text-decoration:none;
+    color: #515151;
+    padding: 10px 20px;
+}
+footer nav{
+    text-align: right;
+    padding-right: 100px;
+}
+address{
+    text-align: left;
+    padding-left: 150px;
+    margin-top: -32px;
+
+}
+address p{
+    font-size: 18px;
+  }

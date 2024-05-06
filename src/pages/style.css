@@ -1,0 +1,36 @@
+@media screen and (max-width: 765px) and (min-width: 300px) {
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table{
+        width:100%;
+    }
+}
+.navbar{
+    position: fixed;
+    top: 0;  
+    width: 100%;
+    background-color: transparent !important;
+    z-index: 2;
+}
+.navbar ul{
+    margin-left: 45%;
+    padding: 10px 0px;
+    text-align: center;
+    list-style: none;
+    text-decoration: none;
+}
+.navbar-nav{
+    width: 1700px;
+}
+.navbar ul li{
+    padding: 0px 15px;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0px 15px;
+    
+}
+

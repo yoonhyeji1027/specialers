@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding:0;
+}
+@media screen and (max-width: 765px) and (min-width: 300px) {
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table{
+        width:auto;
+    }
+}
+fieldset {
+    margin: 10px 0;
+}
+
+h1{margin-top: 20px; margin-bottom: 20px;}
+h2{margin-top: 20px; margin-bottom: 40px;}
+h3{margin-top: 20px; margin-bottom: 20px; font-weight: bolder;}
+p{margin-top: 20px; margin-bottom: 20px;}
+
+.Inquiry{
+    padding: 50px 270px;
+    margin-top: 50px;
+}
+.header{
+    text-align: left;
+    
+}
+.text_box{
+    padding: 0px 0.5px;
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 10px 110px;
+}
+ul li p{
+    margin-top: 6px;
+}
+#title{
+    padding-left: 10px;
+    padding-right: 100px;
+}
+li{
+    padding: 0px 5px;
+}
+li img{
+    margin-top: 3px;
+    margin-right: -3px;
+}
+input{
+    margin-top: 5px;
+    text-align: left;
+}
+select{
+    margin-top: 5px;
+}
+
+.inquiry_list{
+    margin-top: -35px;
+    margin-bottom: -45px;
+    width: 1340px;
+}
+
+.button{
+    padding: 50px 0px;
+
+}
+button{
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    margin-left: 72%;
+    margin-top: 80px;
+    border: none;
+    background-color: #FFF;
+    color:#4D606B;
+    
+}
+
+
+footer {
+    padding: 10px 0;                               
+    background-color: #E3E3E3;
+    color: #515151;
+    clear: both;
+    padding: 80px 20px;
+    
+}
+.address{
+    text-align: left;
+
+}
+address p{
+    font-size: 18px;
+  }

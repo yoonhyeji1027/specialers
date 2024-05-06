@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding:0;
+}
+@media screen and (max-width: 765px) and (min-width: 300px) {
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table{
+        width:100%;
+    }
+}
+
+fieldset {
+    margin: 10px 0;
+}
+
+h1{margin-top: 20px; margin-bottom: 40px;}
+h2{margin-top: 20px; margin-bottom: 40px;}
+h3{margin-top: 20px; margin-bottom: 40px;}
+p{margin-top: 20px; margin-bottom: 20px;}
+
+
+.button{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    width: 300px;
+    margin-left: 800px;
+}
+.button button{
+
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #fff;
+    border: 1px solid #515151;
+    margin: -1px;
+}
+button a{
+    text-decoration: none;
+    color:#515151;
+}
+
+.image_s{
+    display: flex;
+}
+.image_s img{
+    justify-content: center;
+    margin-left: 150px;
+}
+
+.hello{
+    padding: 50px 10px;
+    /* background-image: url('/image/background_fish.png'); */ 
+}
+#hello_text{
+    margin-left: 850px;
+    margin-top: -850px;
+    padding: 200px 50px; 
+    line-height: 33px;
+    text-align: left;
+    font-size: 20px;
+    width: 1000px;
+}
+#hello_name{
+    margin-left: 1100px;
+    margin-top: -400px;
+    padding: 200px 50px; 
+    font-size: 20px;
+}
+.hello h4{margin-top:-100px; margin-bottom: 15px;}
+
+.mingan{
+    padding:90px 170px;
+}
+#mingan_text{
+    text-align: left;
+    font-size: 20px;
+    line-height: 33px;
+}
+#mingan_image{
+    padding-top: 90px;
+    padding-left: 25px;
+    display: flex;
+    margin: 0 auto;
+    margin-left: 100px;
+    width: 1500px;
+}
+#mingan_image li{
+    display: inline-block;
+    position: relative;
+    padding-bottom: 90px;
+
+}
+#mingan_image li img{
+    padding: 0px 10px;
+    display: block;
+    position: relative;
+    margin: 0px 30px;
+
+}
+#mingan_image li span{
+    position: absolute;
+    line-height:1.462em;
+    white-space:nowrap;
+    transform:translate(-50%, 0);
+    color:#4D606B;
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+footer {
+    border-top: 1px solid #ccc;                          
+    background-color: #E3E3E3;
+    color: #515151;
+    clear: both;
+    height: 20vh;
+    line-height: 8px;
+
+}
+.footer_link{
+    text-decoration:none;
+    color: #515151;
+    padding: 10px 20px;
+}
+footer nav{
+    text-align: right;
+    padding-right: 100px;
+}
+address{
+    text-align: left;
+    padding-left: 150px;
+
+}
+address p{
+    font-size: 18px;
+  }

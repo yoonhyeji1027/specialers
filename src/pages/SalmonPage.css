@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding:0;
+}
+@media screen and (max-width: 765px) and (min-width: 300px) {
+  .table-container{
+      width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+
+  table{
+      width:auto;
+  }
+}
+
+fieldset {
+    margin: 10px 0;
+}
+
+h1{margin-top: 20px; margin-bottom: 40px;}
+h2{margin-top: 20px; margin-bottom: 40px;}
+h3{margin-top: 20px; margin-bottom: 40px;}
+p{margin-top: 20px; margin-bottom: 20px; font-size: 20px;}
+
+.sujo {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 50px;
+  }
+  
+  .sujo_data {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sujo_data img {
+    margin-top: 70px;
+    margin-right: 20px; 
+    margin-bottom: 70px;
+    margin-left: 100px;
+  }
+  
+  #sujo_text {
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 100px;
+  }
+
+.graph {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 50px;
+  }
+  
+  .graph_data {
+    display: flex;
+    align-items: center;
+  }
+  
+  .graph_data img {
+    margin-top: 70px;
+    margin-left: 20px; 
+    margin-bottom: 70px;
+    margin-right: 100px;
+    order: 2; 
+  }
+  
+  #graph_text {
+    flex-grow: 1;
+    order: 1; 
+    text-align: left;
+    margin-left: 100px;
+    width: 735px;
+  }
+
+hr{margin: 50px 100px;}
+
+
+footer {
+  border-top: 1px solid #ccc;                          
+  background-color: #E3E3E3;
+  color: #515151;
+  clear: both;
+  height: 20vh;
+  line-height: 8px;
+}
+.footer_link{
+  text-decoration:none;
+  color: #515151;
+  padding: 10px 20px;
+}
+footer nav{
+  text-align: right;
+  padding-right: 100px;
+}
+address{
+  text-align: left;
+  padding-left: 150px;
+  margin-top: -32px;
+
+}
+address p{
+  font-size: 18px;
+}
