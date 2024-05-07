@@ -31,6 +31,7 @@ p{margin-top: 20px; margin-bottom: 20px;}
 
 .kakao_map{
     padding:10px 400px;
+    margin-bottom: -50px;
 }
 .map_info{
     text-align: center;

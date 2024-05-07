@@ -24,7 +24,9 @@ export default function Mapp() {
                                 width: "969px",
                                 height: "467px",
                             }}
-                            level={-5} // 지도의 확대 레벨
+                            level={-3} // 지도의 확대 레벨
+
+                            
                         />
                     </div>
 

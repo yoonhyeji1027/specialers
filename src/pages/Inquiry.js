@@ -34,7 +34,7 @@ export default function Inquiry() {
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
-                        <li><img src="images/inquiry_3.png" width="25px" height="35px" alt="inquiry3" /></li>
+                        <li><img src="images/inquiry_3.png" width="25px" height="35px" alt="inquiry3" /></li>;
                         <li><p id='title' style={{ color: '#515151' }}>휴대번호</p></li>
                         <li><input type="text" style={{ width: '100px', height: '40px', marginLeft:'-45px' }}></input></li>
                         <li><p style={{ color: '#515151' }}>-</p></li>
@@ -44,7 +44,7 @@ export default function Inquiry() {
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
-                        <li><img src="images/inquiry_4.png" width="25px" height="35px" alt="inquiry4" /></li>
+                        <li><img src="images/inquiry_4.png" width="25px" height="25px" alt="inquiry4" style={{marginTop:'10px'}}/></li>
                         <li><p id='title' style={{ color: '#515151' }}>이메일</p></li>
                         <li><input type="text" style={{ width: '200px', height: '40px', marginLeft:'-25px' }}></input></li>
                         <li><p style={{ color: '#515151' }}>@</p></li>

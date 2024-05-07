@@ -37,6 +37,7 @@ export default function MainPage() {
         return () => clearInterval(interval);
     }, [activeButton]);
 
+
     // 버튼에 마우스를 올렸을 때
     const handleButtonHover = (buttonName) => {
         setHoveredButton(buttonName);
@@ -53,25 +54,25 @@ export default function MainPage() {
                     <a href="SalmonPage.js" className="m_i_salmon">연어양식 보기→</a>
                     <div className="circle_buttons"> {/* 버튼 클릭 시 이미지 변경 코드 */}
                         <div
-                            className={`circle_001 ${hoveredButton === 'circle_01' ? 'show' : 'circle_01'}`} // circle_001(기본값)에 마우스가 올라가면 circle_01(색칠된 버튼)이 보여짐
-                            onMouseOver={() => handleButtonHover('circle_01')} // 'circle_01'을 handleButtonHover 함수에 전달하여 현재 버튼이 호버모드(마우스가 올라감)임을 전달
-                            onMouseOut={() => handleButtonHover(null)}  // 마우스가 호버되지 않으면 다시 빈 값을 반환
-                            onClick={() => { {/*호버되어 나온 버튼을 클릭할 시 출력 값(다음 이미지 호출) */}
-                                setActiveButton('circle_001');
-                                setCurrentImage('/images/Main2.png');
-                            }}
-                        ></div>
-                        <div
-                            className={`circle_002 ${hoveredButton === 'circle_02' ? 'show' : 'circle_02'}`}
-                            onMouseOver={() => handleButtonHover('circle_02')}
+                            className={`circle_001 ${activeButton === 'circle_001' || hoveredButton === 'circle_01' ? 'show' : 'circle_01'}`}
+                            onMouseOver={() => handleButtonHover('circle_01')}
                             onMouseOut={() => handleButtonHover(null)}
                             onClick={() => {
-                                setActiveButton('circle_002');
+                                setActiveButton('circle_001');
                                 setCurrentImage('/images/Main1.png');
                             }}
                         ></div>
                         <div
-                            className={`circle_003 ${hoveredButton === 'circle_03' ? 'show' : 'circle_03'}`}
+                            className={`circle_002 ${activeButton === 'circle_002' || hoveredButton === 'circle_02' ? 'show' : 'circle_02'}`}
+                            onMouseOver={() => handleButtonHover('circle_02')}
+                            onMouseOut={() => handleButtonHover(null)}
+                            onClick={() => {
+                                setActiveButton('circle_002');
+                                setCurrentImage('/images/Main2.png');
+                            }}
+                        ></div>
+                        <div
+                            className={`circle_003 ${activeButton === 'circle_003' || hoveredButton === 'circle_03' ? 'show' : 'circle_03'}`}
                             onMouseOver={() => handleButtonHover('circle_03')}
                             onMouseOut={() => handleButtonHover(null)}
                             onClick={() => {

@@ -33,4 +33,7 @@
     margin: 0px 15px;
     
 }
-
+.navbar-not-fixed {
+    position: relative;
+  }
+  
