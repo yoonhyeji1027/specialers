@@ -34,7 +34,7 @@ p{margin-top: 20px; margin-bottom: 20px; font-size: 20px;}
     align-items: center;
   }
   
-  .sujo_data img {
+  .sujo_data video{
     margin-top: 70px;
     margin-right: 20px; 
     margin-bottom: 70px;
@@ -44,7 +44,7 @@ p{margin-top: 20px; margin-bottom: 20px; font-size: 20px;}
   #sujo_text {
     flex-grow: 1;
     text-align: left;
-    margin-left: 100px;
+    margin-left: 170px;
   }
 
 .graph {
@@ -58,7 +58,7 @@ p{margin-top: 20px; margin-bottom: 20px; font-size: 20px;}
     align-items: center;
   }
   
-  .graph_data img {
+  .graph_view {
     margin-top: 70px;
     margin-left: 20px; 
     margin-bottom: 70px;

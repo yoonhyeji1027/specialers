@@ -6,7 +6,7 @@ function NavBar() {
   return (
     <div className='table-container'>
       <table>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-not-fixed"> {/* navbar-not-fixed 클래스 추가 */}
+        <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top"> {/* 클래스 변경 */}
           <div class="container-fluid">
             <a class="logo" href="MainPage.js">
               <img src="/images/logo.png" alt="Logo" width="263" height="66.27" />

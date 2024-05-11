@@ -128,8 +128,8 @@ export default function MainPage() {
                     <p style={{ color: '#515151' }}>연어의 이미지 및 영상을 제공합니다.</p>
                 </div>
                 <div className="image2">
-                    <img src="/images/imsi.png" alt="imsi1" width="735px" height="390px" />
-                    <img src="/images/imsi.png" alt="imsi2" width="735px" height="390px" />
+                    <img src="/images/main_t_1.jpg" alt="imsi1" width="735px" height="390px" />
+                    <img src="/images/main_t_2.jpg" alt="imsi2" width="735px" height="390px" />
                 </div>
 
 
