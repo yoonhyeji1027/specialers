@@ -85,10 +85,9 @@
     top: 100%;
     left: 0;
     flex-direction: column; /* 세로로 배치 */
-    min-width: 160px;
+    min-width: 160px; /* 필요에 따라 너비 조정 */
     z-index: 1;
     margin-left: 1175px;
-    background-color: #fff;
   }
   
   #sub_menu li {
@@ -102,7 +101,7 @@
   }
   
   #sub_menu li a:hover {
-    border: 1px solid #515151;
+    border: 1px solid #fff;
   }
   
   

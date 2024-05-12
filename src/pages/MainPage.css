@@ -45,11 +45,12 @@ p{margin-top: 20px; margin-bottom: 20px;}
 .m_i_specialers{
     position: absolute;
     margin-top: -620px;
-    margin-left: 560px;
+    margin-left: 585px;
     transform: translate( -50%, -50% );
     color: #FFF;
     font-size: 5px;
     width: 1000px;
+    font-weight: 500;
 }
 .m_i_text{
     position: absolute;

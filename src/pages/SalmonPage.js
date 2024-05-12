@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./SalmonPage.css";
-import NavBar from './NavBar';
+import NavBar from './NavBar.js';
 import PieGraph from './PieGraph.jsx'
 import LineGraph from './LineGraph.jsx'
 import BarGraph from './BarGraph.jsx'
@@ -147,7 +147,7 @@ export default function SalmonPage() {
             </div>
           </div>
           <div className='sujo_data'>
-          <video width="823px" height="768px" controls="controls">
+            <video width="823px" height="768px" controls="controls">
               <source src="images/kkung2.mp4" type='video/mp4'></source>
             </video>
             <div id='sujo_text'>
@@ -156,7 +156,7 @@ export default function SalmonPage() {
             </div>
           </div>
           <div className='sujo_data'>
-          <video width="823px" height="768px" controls="controls">
+            <video width="823px" height="768px" controls="controls">
               <source src="images/kkung3.mp4" type='video/mp4'></source>
             </video>
             <div id='sujo_text'>
@@ -170,8 +170,8 @@ export default function SalmonPage() {
 
         <div className='graph'> {/*그래프 전체 묶음 */}
           <div className='graph_data'> {/*각 그래프별 묶음*/}
-          <div className='graph_view' style={{width:"823px", height:"768px"}}>
-                <BarGraph data={barDataList}/>
+            <div className='graph_view' style={{ width: "823px", height: "768px" }}>
+              <BarGraph data={barDataList} />
             </div>
             <div id='graph_text'>
               <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
@@ -179,8 +179,8 @@ export default function SalmonPage() {
             </div>
           </div>
           <div className='graph_data'>
-          <div className='graph_view' style={{height:'823px', width:'768px'}}>
-                <LineGraph data={lineDataList}/>
+            <div className='graph_view' style={{ height: '823px', width: '768px' }}>
+              <LineGraph data={lineDataList} />
             </div>
 
             <div id='graph_text'>
@@ -189,8 +189,8 @@ export default function SalmonPage() {
             </div>
           </div>
           <div className='graph_data'>
-          <div className='graph_view' style={{height:'823px', width:'768px'}}>
-                <PieGraph data={pieDataList}/>
+            <div className='graph_view' style={{ height: '823px', width: '768px' }}>
+              <PieGraph data={pieDataList} />
             </div>
             <div id='graph_text'>
               <h3 style={{ color: '#4D606B' }}>03_실시간 수조이미지</h3>
@@ -208,9 +208,8 @@ export default function SalmonPage() {
             <a href="Map.js" className="footer_link">오시는길</a>
           </nav>
           <address> {/* 링크가 필요 없는 주소 */}
-            <p>(주) 스페셜러스</p>
-            <p>주소: 강원특별자치도 양양군 손양면 학포길 226-61</p>
-            <p>©2023 specialers Corporation ALL RIGHTS RESERVED</p>
+            <p>(주) 아쿠아포닉스</p>
+            <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
           </address>
         </footer>
       </table>

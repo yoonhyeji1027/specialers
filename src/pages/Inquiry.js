@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Inquiry.css";
-import NavBar from './NavBar';
+import NavBar from './NavBar.js';
 
 export default function Inquiry() {
     return (
@@ -85,9 +85,8 @@ export default function Inquiry() {
                     <a href="Map.js" className="footer_link">오시는길</a>
                 </nav>
                 <address> {/* 링크가 필요 없는 주소 */}
-                    <p>(주) 스페셜러스</p>
-                    <p>주소: 강원특별자치도 양양군 손양면 학포길 226-61</p>
-                    <p>©2023 specialers Corporation ALL RIGHTS RESERVED</p>
+                    <p>(주) 아쿠아포닉스</p>
+                    <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
                 </address>
             </footer>
             </table>

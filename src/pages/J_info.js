@@ -1,6 +1,6 @@
 import React from 'react';
 import "./J_info.css";
-import NavBar from './NavBar';
+import NavBar from './NavBar.js';
 
 
 export default function J_info() {
@@ -50,6 +50,7 @@ export default function J_info() {
                         <img src="images/j_info_5.png" width="178px" height="135px" alt="image5" /><span>센서이터 관리<br />(DO, PH, 수온 등)</span>
                     </li>
                 </ul>
+                
                 <hr style={{ borderStyle: 'dotted', marginTop: '20px', paddingBottom:'80px'}} />
                 <h2 style={{ color: '#4D606B' }}>AI FishFarm Management System</h2>
                 <div id="j_info_text2">
@@ -69,9 +70,8 @@ export default function J_info() {
                     <a href="Map.js" className="footer_link">오시는길</a>
                 </nav>
                 <address> {/* 링크가 필요 없는 주소 */}
-                    <p>(주) 스페셜러스</p>
-                    <p>주소: 강원특별자치도 양양군 손양면 학포길 226-61</p>
-                    <p>©2023 specialers Corporation ALL RIGHTS RESERVED</p>
+                    <p>(주) 아쿠아포닉스</p>
+                    <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
                 </address>
             </footer>
             </table>

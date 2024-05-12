@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./MainPage.css";
-import NavBar_main from './NavBar_main';
+import NavBar_main from './NavBar_main.js';
 
 
 export default function MainPage() {
@@ -49,7 +49,7 @@ export default function MainPage() {
                 <NavBar_main /> {/*메인 페이지랑 텍스트 색이 달라서 메인 페이지 버전 따로 추가*/}
                 <div className='specialers'> {/* 메인 사진 + 메인 사진 안에 포함된 텍스트랑 버튼들 묶음 */}
                     <img id="Main_image" src={currentImage} width="100%" height="950px" alt="Main" /> {/* src={currentImage}를 통해 초기값으로 저장되어있는 이미지 호출 */}
-                    <h1 className='m_i_specialers' width="100px" style={{ fontSize: '65px' }}>SPECIALERS 스페셜러스</h1>
+                    <h1 className='m_i_specialers' width="100px" style={{ fontSize: '65px' }}>Aquaponics 아쿠아포닉스</h1>
                     <p className="m_i_text">인공지능기반 스마트 양식장 관리</p>
                     <a href="SalmonPage.js" className="m_i_salmon">연어양식 보기→</a>
                     <div className="circle_buttons"> {/* 버튼 클릭 시 이미지 변경 코드 */}
@@ -142,9 +142,8 @@ export default function MainPage() {
                     <a href="Map.js" className="footer_link">오시는길</a>
                 </nav>
                 <address> {/* 링크가 필요 없는 주소 */}
-                    <p>(주) 스페셜러스</p>
-                    <p>주소: 강원특별자치도 양양군 손양면 학포길 226-61</p>
-                    <p>©2023 specialers Corporation ALL RIGHTS RESERVED</p>
+                    <p>(주) 아쿠아포닉스</p>
+                    <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
                 </address>
             </footer>
             </table>
