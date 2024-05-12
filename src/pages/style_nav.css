@@ -80,7 +80,7 @@
     z-index: 1000;
   }
   
-  #sub_menu {
+  #submenu {
     position: absolute;
     top: 100%;
     left: 0;
@@ -88,20 +88,21 @@
     min-width: 160px;
     z-index: 1;
     margin-left: 1175px;
+    
+  }
+  
+  #submenu li {
+    display: block;
     background-color: #fff;
   }
   
-  #sub_menu li {
-    display: block;
-  }
-  
-  #sub_menu li a {
+  #submenu li a {
     display: block;
     padding: 10px;
     text-decoration: none;
   }
   
-  #sub_menu li a:hover {
+  #submenu li:hover {
     border: 1px solid #515151;
   }
   

@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding:0;
+}
+@media screen and (max-width: 765px) and (min-width: 300px) {
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table{
+        width:auto;
+    }
+}
+fieldset {
+    margin: 10px 0;
+}
+
+.title{
+    text-align: left;
+    padding-left: 50px;
+    padding-top: 150px;
+}
+select{
+    margin-left: 20px;
+}
+
+h4{
+    text-align: left;
+    padding-left: 100px;
+    padding-top: 100px;
+}
+.graph_view{
+    margin: 20px 90px;
+}
+
+footer {
+    padding: 10px 0;                               
+    background-color: #E3E3E3;
+    color: #515151;
+    clear: both;
+    padding: 80px 20px;
+    
+}
+.address{
+    text-align: left;
+
+}
+address p{
+    font-size: 18px;
+  }

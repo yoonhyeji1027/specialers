@@ -44,9 +44,9 @@ function NavBar_main(){
                     <a class="nav-link" href="#" onClick={() => setIsMenuOpen(!isMenuOpen)} style={{color:'#FFF', fontSize:'20px'}}>데이터분석</a>
                     {isMenuOpen && (
                       <ul id='sub_menu'>
-                        <li><a href="correlation.js" style={{color:'#FFF', fontSize:'20px'}}>상관관계분석</a></li>
-                        <li><a href="aquarium_p.js" style={{color:'#FFF', fontSize:'20px'}}>수조환경예측</a></li>
-                        <li><a href="growth_p.js" style={{color:'#FFF', fontSize:'20px'}}>생장예측</a></li>
+                        <li><a href="Correlation.js" style={{color:'#FFF', fontSize:'20px'}}>상관관계분석</a></li>
+                        <li><a href="Aquarium_p.js" style={{color:'#FFF', fontSize:'20px'}}>수조환경예측</a></li>
+                        <li><a href="Growth_p.js" style={{color:'#FFF', fontSize:'20px'}}>생장예측</a></li>
                       </ul>
                     )}
                   </li>

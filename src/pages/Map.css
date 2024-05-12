@@ -27,11 +27,13 @@ p{margin-top: 20px; margin-bottom: 20px;}
     padding:50px 50px;
     text-align: center;
     margin-top: 50px;
+    margin-left: 50px;
 }
 
 .kakao_map{
-    padding:10px 400px;
+    padding:10px 355px;
     margin-bottom: -50px;
+    margin-left: 50px;
 }
 .map_info{
     text-align: center;
