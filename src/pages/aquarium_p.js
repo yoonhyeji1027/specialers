@@ -150,6 +150,8 @@ export default function Aquarium_p() {
           <div className='graph_board'>
             <h4>수조 1의 수조 환경 예측 결과</h4>
 
+            <button>새로고침</button>
+
             <div className='graph_view' style={{ width: '1700px', height: '700px' }}>
               <LineGraph data={lineDataList} />
             </div>

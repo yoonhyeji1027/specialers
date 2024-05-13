@@ -33,31 +33,31 @@ p{margin-top: 20px; margin-bottom: 20px;}
 .text_box{
     padding: 0px 0.5px;
 }
-ul{
+.text_box ul{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     padding: 10px 110px;
 }
-ul li p{
+.text_box ul li p{
     margin-top: 6px;
 }
 #title{
     padding-left: 10px;
     padding-right: 100px;
 }
-li{
+.inquiry_list li{
     padding: 0px 5px;
 }
-li img{
+.inquiry_list li img{
     margin-top: 3px;
     margin-right: -3px;
 }
-input{
+.inquiry_list li input{
     margin-top: 5px;
     text-align: left;
 }
-select{
+.inquiry_list select{
     margin-top: 5px;
 }
 
@@ -71,7 +71,7 @@ select{
     padding: 50px 0px;
 
 }
-button{
+.text_box button{
     width: 100px;
     height: 40px;
     font-size: 18px;

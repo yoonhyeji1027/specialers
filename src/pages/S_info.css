@@ -39,7 +39,7 @@ p{margin-top: 20px; margin-bottom: 20px;}
     border: 1px solid #515151;
     margin: -1px;
 }
-button a{
+.button button a{
     text-decoration: none;
     color:#515151;
 }

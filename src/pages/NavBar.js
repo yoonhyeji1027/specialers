@@ -26,7 +26,7 @@ function NavBar() {
         <nav ref={navigationRef} class="navbar navbar-expand-lg bg-body-tertiary navbar-fixed-top"> {/* 클래스 변경 */}
           <div class="container-fluid">
             <a class="logo" href="MainPage.js">
-              <img src="/images/logo.png" alt="Logo" width="263" height="66.27" />
+              <img src="/images/logo.png" alt="Logo" width="210" height="40" style={{marginLeft:"20px"}} />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
