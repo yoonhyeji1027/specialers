@@ -2,115 +2,47 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar.js';
 import "./Aquarium_p.css";
-import LineGraph from './LineGraph.jsx'
+import LocalLineGraph from './LocalLineGraph.jsx'
 
 export default function Aquarium_p() {
 
-  const [tanks, setTanks] = useState([]);
-  const [barDataList, setBarDataList] = useState([{
-    idx: 0,
-    //mea_dt: '',
-    farm_id: 0,
-    tank_id: 0,
-    do: 0,
-    temperature: 0,
-    ph: 0,
-    //salinity: '',
-    formatted_mea_dt: 0
-  }])
-
-  const [lineDataList, setLineDataList] = useState([]);
-  let _lineDataList = [];
-
-  const [pieDataList, setPieDataList] = useState([
-    {
-      "id": "do",
-      "label": "do",
-      value: 0,
-      "color": "hsl(302, 70%, 50%)"
-    },
-    {
-      "id": "temperature",
-      "label": "temperature",
-      value: 0,
-      "color": "hsl(181, 70%, 50%)"
-    },
-    {
-      "id": "ph",
-      "label": "ph",
-      value: 0,
-      "color": "hsl(344, 70%, 50%)"
-    },
-    {
-      "id": "salinity",
-      "label": "salinity",
-      value: 0,
-      "color": "hsl(257, 70%, 50%)"
-    }
-  ])
+  const [localLineDataList, setLocalLineDataList] = useState([]);
+  let _localLineDataList = [];
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/tanks');
-      const _barDataList = await response.data.tanks.map((tank, index) => ({
-        idx: tank.idx ?? 0,
-        //mea_dt: tank.mea_dt,
-        farm_id: tank.farm_id ?? 0,
-        tank_id: tank.tank_id ?? 0,
-        do: tank.do ?? 0,
-        temperature: tank.temperature ?? 0,
-        ph: tank.ph ?? 5,
-        //salinity: response.data[key].salinity,
-        formatted_mea_dt: tank.formatted_mea_dt ?? 0
-      }))
-      _lineDataList = [];
-      response.data.tanks.forEach((tank, index) => {
-        const id = tank.tank_id ?? 0;
-        const data = { x: tank.formatted_mea_dt ?? 0, y: tank.temperature ?? 0 };
-        const existingItemIndex = _lineDataList.findIndex(item => item.id === id);
-        if (existingItemIndex !== -1) {
-          _lineDataList[existingItemIndex].data.push(data);
-        } else {
-          _lineDataList.push({ id, data: [data] });
-        }
-      })
-      const _pieDataList = await response.data.tanks.filter((tank, index) => index === 9).map((tank, index) => ([
-        //idx: tank.idx ?? 0,
-        //mea_dt: tank.mea_dt,
-        //farm_id: tank.farm_id ?? 0,
-        //tank_id: tank.tank_id ?? 0,
-        {
-          id: 'do',
-          label: 'do',
-          value: tank.do ?? 0,
-          color: 'hsl(302, 70%, 50%)'
-        }, {
-          id: 'temperature',
-          label: 'temperature',
-          value: tank.temperature ?? 0,
-          color: 'hsl(181, 70%, 50%)'
-        }, {
-          id: 'ph',
-          label: 'ph',
-          value: tank.ph ?? 5,
-          color: 'hsl(344, 70%, 50%)'
-        }, {
-          id: 'salinity',
-          label: 'salinity',
-          value: tank.salinity ?? 0,
-          color: 'hsl(257, 70%, 50%)'
-        }
-        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
-      ]))
+      const local_response = await axios.get('http://localhost:3001/predict');
+      
+      _localLineDataList = [];
+      local_response.data.predict.forEach(predict => {
+        const temp_data = { x: predict.formatted_mea_dt ?? 0, y: predict.temperature ?? 0 };
+        const ph_data = { x: predict.formatted_mea_dt ?? 0, y: predict.ph ?? 0 };
+        const do_data = { x: predict.formatted_mea_dt ?? 0, y: predict.do ?? 0 };
+        const existingItemIndex_temp = _localLineDataList.findIndex(item => item.id === `Temperature`);
+        const existingItemIndex_do = _localLineDataList.findIndex(item => item.id === `DO`);
+        const existingItemIndex_ph = _localLineDataList.findIndex(item => item.id === `pH`);
 
-      setTanks(response.data.tanks);
-      setBarDataList(_barDataList);
-      setLineDataList(_lineDataList);
-      setPieDataList(_pieDataList.flat());
+        if (existingItemIndex_temp !== -1) {
+          _localLineDataList[existingItemIndex_temp].data.push(temp_data);
+        }
+        else if (existingItemIndex_temp === -1){
+          _localLineDataList.push({ id: `Temperature`, data: [temp_data] });
+        }
+        if (existingItemIndex_do !== -1) {
+          _localLineDataList[existingItemIndex_do].data.push(do_data);
+        }
+        else if (existingItemIndex_do === -1){
+          _localLineDataList.push({ id: `DO`, data: [do_data] });
+        }
+        if (existingItemIndex_ph !== -1) {
+          _localLineDataList[existingItemIndex_ph].data.push(ph_data);
+        }
+        else if (existingItemIndex_ph === -1){
+          _localLineDataList.push({ id: `pH`, data: [ph_data] });
+        } 
+      });
 
-      console.log(_pieDataList);
-      console.log(pieDataList);
-      console.error('새로고침');
+      setLocalLineDataList(_localLineDataList);
     } catch (error) {
       console.error('데이터를 불러오는 중 에러 발생:', error);
     }
@@ -153,7 +85,7 @@ export default function Aquarium_p() {
             <button>새로고침</button>
 
             <div className='graph_view' style={{ width: '1700px', height: '700px' }}>
-              <LineGraph data={lineDataList} />
+            <LocalLineGraph data={localLineDataList} />
             </div>
           </div>
         </div>

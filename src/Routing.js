@@ -6,8 +6,8 @@ import SalmonPage from "./pages/SalmonPage.js";
 import J_info from "./pages/J_info.js";
 import Map from "./pages/Mapp.js";
 import Inquiry from "./pages/Inquiry.js";
-import Aquarium_p from "./pages/Aquarium_p.js";
-import Correlation from "./pages/Correlation.js";
+import Aquarium_p from "./pages/aquarium_p.js";
+import Correlation from "./pages/correlation.js";
 import Outlier from "./pages/Outlier.js";
 
 
