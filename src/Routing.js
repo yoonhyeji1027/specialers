@@ -8,7 +8,7 @@ import Map from "./pages/Mapp.js";
 import Inquiry from "./pages/Inquiry.js";
 import Aquarium_p from "./pages/Aquarium_p.js";
 import Correlation from "./pages/Correlation.js";
-import Growth_p from "./pages/Growth_p.js";
+import Outlier from "./pages/Outlier.js";
 
 
 
@@ -27,7 +27,7 @@ function Routing() {
             <Route path='/Inquiry.js' element={<Inquiry />} />
             <Route path='/Aquarium_p.js' element={<Aquarium_p />} />
             <Route path='/Correlation.js' element={<Correlation />} />
-            <Route path='/Growth_p.js' element={<Growth_p />} />
+            <Route path='/Outlier.js' element={<Outlier />} />
 
 
         </Routes>

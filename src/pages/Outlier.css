@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding:0;
+}
+@media screen and (max-width: 765px) and (min-width: 300px) {
+    .table-container{
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    table{
+        width:auto;
+    }
+}
+fieldset {
+    margin: 10px 0;
+}
+
+.outlier{
+    margin: 40px;
+}
+
+.o_title{
+    text-align: left;
+    padding-left: 100px;
+    padding-top: 150px;
+}
+.o_title select{
+    margin-left: 20px;
+}
+.o_title button{
+    border: 1px solid #000;
+    border-radius: 50px;
+    margin-left: 20px;
+    width: 100px;
+    height: 40px;
+    background-color: transparent;
+}
+
+.o_graph_board{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.o_graph_board h3{
+    text-align: left;
+    padding-left: 450px;
+    padding-top: 100px;
+}
+.o_graph_board h4{
+    text-align: left;
+    margin-left: 100px;
+}
+.o_graph_board p{
+    text-align: left;
+    margin-left: 270px;
+}
+
+.o_graph_view{
+    margin-top: -380px;
+    margin-left: 900px;
+    margin-bottom: 80px;
+}
+
+footer {                             
+    background-color: #E3E3E3;
+    color: #515151;
+    clear: both;
+    padding: 80px 20px;
+    
+}
+.address{
+    text-align: left;
+
+}
+address p{
+    font-size: 18px;
+  }

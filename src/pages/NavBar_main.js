@@ -46,7 +46,7 @@ function NavBar_main(){
                       <ul id='sub_menu'>
                         <li><a href="Correlation.js" style={{color:'#FFF', fontSize:'20px'}}>상관관계분석</a></li>
                         <li><a href="Aquarium_p.js" style={{color:'#FFF', fontSize:'20px'}}>수조환경예측</a></li>
-                        <li><a href="Growth_p.js" style={{color:'#FFF', fontSize:'20px'}}>생장예측</a></li>
+                        <li><a href="Outlier.js" style={{color:'#FFF', fontSize:'20px'}}>이상치탐지</a></li>
                       </ul>
                     )}
                   </li>
