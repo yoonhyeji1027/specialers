@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import NavBar from './pages/js/NavBar';
-import Routing from './Routing';
+import NavBasr from './pages/js/NavBar.js';
+import Routing from './Routing.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
