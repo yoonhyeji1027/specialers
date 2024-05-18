@@ -1,5 +1,5 @@
 import React from 'react';
-import "./S_info.css";
+import "../css/S_info.css";
 import NavBar from './NavBar.js';
 
 export default function S_info() {

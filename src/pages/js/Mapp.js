@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Map.css";
+import "../css/Map.css";
 import NavBar from './NavBar.js';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 

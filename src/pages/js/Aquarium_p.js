@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar.js';
-import "./Correlation.css";
-import BarGraph from './BarGraph.jsx'
+import "../css/Aquarium_p.css";
+import LineGraph from '../jsx/LineGraph.jsx'
 
-export default function Correlation() {
+export default function Aquarium_p() {
 
   const [tanks, setTanks] = useState([]);
   const [barDataList, setBarDataList] = useState([{
@@ -128,12 +128,13 @@ export default function Correlation() {
     };
   }, []);
 
-  return (
-    <div className='table-container'>
-      <table>
-        <NavBar />
 
-        <div className='correlation'>
+    return (
+      <div className='table-container'>
+        <table>
+          <NavBar />
+          
+          <div className='aquarium'>
           <div className='title'>
             <h3>수조선택
             <select style={{ width: '250px', height: '40px', fontSize:'20px'}}>
@@ -147,17 +148,17 @@ export default function Correlation() {
           </div>
 
           <div className='graph_board'>
-            <h4>수조 1의 상관관계 분석 결과</h4>
+            <h4>수조 1의 수조 환경 예측 결과</h4>
 
             <button>새로고침</button>
 
-            <div className='graph_view' style={{ width: "1700px", height: "700px" }}>
-              <BarGraph data={barDataList} />
+            <div className='graph_view' style={{ width: '1700px', height: '700px' }}>
+              <LineGraph data={lineDataList} />
             </div>
           </div>
         </div>
 
-        <footer>
+          <footer>
           <nav>
             <a href="S_info.js" className="footer_link">회사소개</a>
             <a href="J_info.js" className="footer_link">제품소개</a>
@@ -169,8 +170,8 @@ export default function Correlation() {
             <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
           </address>
         </footer>
-      </table>
-
-    </div>
-  );
-}
+        </table>
+        
+      </div>
+    );
+  }

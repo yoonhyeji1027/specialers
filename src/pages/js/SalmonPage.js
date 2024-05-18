@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import "./SalmonPage.css";
+import "../css/SalmonPage.css";
 import NavBar from './NavBar.js';
-import PieGraph from './PieGraph.jsx'
-import LineGraph from './LineGraph.jsx'
-import BarGraph from './BarGraph.jsx'
+import PieGraph from '../jsx/PieGraph.jsx'
+import LineGraph from '../jsx/LineGraph.jsx'
+import BarGraph from '../jsx/BarGraph.jsx'
 
 export default function SalmonPage() {
 

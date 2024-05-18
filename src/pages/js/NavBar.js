@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./style_nav.css";
+import "../css/style_nav.css";
 import React, { useState, useRef, useEffect } from 'react';
 
 function NavBar() {

@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import MainPage  from "./pages/MainPage.js";
-import S_info from "./pages/S_info.js";
-import SalmonPage from "./pages/SalmonPage.js";
-import J_info from "./pages/J_info.js";
-import Map from "./pages/Mapp.js";
-import Inquiry from "./pages/Inquiry.js";
-import Aquarium_p from "./pages/Aquarium_p.js";
-import Correlation from "./pages/Correlation.js";
-import Outlier from "./pages/Outlier.js";
+import MainPage  from "./pages/js/MainPage.js";
+import S_info from "./pages/js/S_info.js";
+import SalmonPage from "./pages/js/SalmonPage.js";
+import J_info from "./pages/js/J_info.js";
+import Map from "./pages/js/Mapp.js";
+import Inquiry from "./pages/js/Inquiry.js";
+import Aquarium_p from "./pages/js/Aquarium_p.js";
+import Correlation from "./pages/js/Correlation.js";
+import Outlier from "./pages/js/Outlier.js";
 
 
 

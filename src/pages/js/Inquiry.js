@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Inquiry.css";
+import "../css/Inquiry.css";
 import NavBar from './NavBar.js';
 
 export default function Inquiry() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./J_info.css";
+import "../css/J_info.css";
 import NavBar from './NavBar.js';
 
 
