@@ -74,6 +74,20 @@ fieldset {
     height: 100%;
   }
   
+  .multiple-graphs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    width: 800px;
+    height: 500px;
+    margin: auto;
+  }
+  
+  .scatter-plot {
+    width: 100%;
+    height: 100%;
+  }
+  
 
 .o_graph_view{
     margin-top: -380px;

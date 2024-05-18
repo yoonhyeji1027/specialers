@@ -29,15 +29,31 @@ export default function Outlier() {
       const filteredData = initialData.filter(item => item.category === selectedOption);
       setData([{ id: `category-${selectedOption}`, data: filteredData }]);
     } else {
-      setDisplayOption(null);
-      // do, ph, temperature, salinity의 그래프 데이터만 보여줌
-      const relevantData = initialData.filter(item => ['do', 'ph', 'temperature', 'salinity'].includes(item.category));
-      const formattedData = relevantData.map(item => ({ id: `category-${item.category}`, data: [item] }));
-      setData(formattedData);
+      setDisplayOption('분류');
+      setData([]);
     }
   };
 
   const renderResultMessage = () => {
+    if (displayOption === '분류') {
+      return (
+        <div className="multiple-graphs">
+          <div className="scatter-plot">
+            <ScatterPlotGraph data={[{ id: '1', data: [{ x: 1, y: 2 }, { x: 2, y: 4 }] }]} />
+          </div>
+          <div className="scatter-plot">
+            <ScatterPlotGraph data={[{ id: '2', data: [{ x: 1, y: 3 }, { x: 2, y: 6 }] }]} />
+          </div>
+          <div className="scatter-plot">
+            <ScatterPlotGraph data={[{ id: '3', data: [{ x: 1, y: 4 }, { x: 2, y: 8 }] }]} />
+          </div>
+          <div className="scatter-plot">
+            <ScatterPlotGraph data={[{ id: '4', data: [{ x: 1, y: 5 }, { x: 2, y: 10 }] }]} />
+          </div>
+        </div>
+      );
+    }
+
     switch (displayOption) {
       case 'mea_dt':
         return (
@@ -192,9 +208,11 @@ export default function Outlier() {
         </div>
         <div className='o_graph_board'>
           {renderResultMessage()}
-          <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
-            <ScatterPlotGraph data={data} />
-          </div>
+          {displayOption !== '분류' && (
+            <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
+              <ScatterPlotGraph data={data} />
+            </div>
+          )}
         </div>
       </div>
       <footer>
