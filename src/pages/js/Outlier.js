@@ -6,13 +6,17 @@ import "../css/Outlier.css";
 export default function Outlier() {
   const [selectedOption, setSelectedOption] = useState('분류');
   const [data, setData] = useState([]);
-  const [displayOption, setDisplayOption] = useState(null); // 버튼 클릭 시 반영될 옵션
+  const [displayOption, setDisplayOption] = useState(null);
 
   const initialData = [
-    { x: 1, y: 1, category: '1' },
-    { x: 2, y: 4, category: '1' },
-    { x: 3, y: 9, category: '2' },
-    { x: 4, y: 16, category: '2' },
+    { x: 1, y: 1, category: 'mea_dt' },
+    { x: 2, y: 4, category: 'farm_id' },
+    { x: 3, y: 9, category: 'tank_id' },
+    { x: 4, y: 16, category: 'do' },
+    { x: 5, y: 25, category: 'temperature' },
+    { x: 6, y: 36, category: 'ph' },
+    { x: 7, y: 49, category: 'salinity' },
+    { x: 8, y: 64, category: 'state' },
   ];
 
   const handleSelectChange = (event) => {
@@ -26,7 +30,138 @@ export default function Outlier() {
       setData([{ id: `category-${selectedOption}`, data: filteredData }]);
     } else {
       setDisplayOption(null);
-      setData([]);
+      // do, ph, temperature, salinity의 그래프 데이터만 보여줌
+      const relevantData = initialData.filter(item => ['do', 'ph', 'temperature', 'salinity'].includes(item.category));
+      const formattedData = relevantData.map(item => ({ id: `category-${item.category}`, data: [item] }));
+      setData(formattedData);
+    }
+  };
+
+  const renderResultMessage = () => {
+    switch (displayOption) {
+      case 'mea_dt':
+        return (
+          <div>
+            <h3>mea_dt에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'farm_id':
+        return (
+          <div>
+            <h3>farm_id에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'tank_id':
+        return (
+          <div>
+            <h3>tank_id에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'do':
+        return (
+          <div>
+            <h3>do에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'temperature':
+        return (
+          <div>
+            <h3>temperature에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'ph':
+        return (
+          <div>
+            <h3>ph에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'salinity':
+        return (
+          <div>
+            <h3>salinity에 대한 결과</h3>
+            {data[0]?.data[0]?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )}
+          </div>
+        );
+      case 'state':
+        return (
+          <div>
+            <h3>state에 대한 결과</h3>
+            {data[0]?.data[0
+              ?.y >= 3 ? (
+              <p>현재 이상치가 탐지되지 않았습니다.</p>
+            ) : (
+              <p>
+                현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                데이터 조치를 권장합니다.
+              </p>
+            )]}
+          </div>
+        );
+      default:
+        return null;
     }
   };
 
@@ -43,25 +178,20 @@ export default function Outlier() {
               onChange={handleSelectChange}
             >
               <option value='분류'>분류</option>
-              <option value='1'>1</option>
-              <option value='2'>2</option>
+              <option value='mea_dt'>mea_dt</option>
+              <option value='farm_id'>farm_id</option>
+              <option value='tank_id'>tank_id</option>
+              <option value='do'>do</option>
+              <option value='temperature'>temperature</option>
+              <option value='ph'>ph</option>
+              <option value='salinity'>salinity</option>
+              <option value='state'>state</option>
             </select>
             <button onClick={handlePlotData}>조회</button>
           </h3>
         </div>
         <div className='o_graph_board'>
-          <h3>수조 1의 DO 데이터 조회 결과</h3>
-          <h4>결과:</h4>
-          {displayOption === '1' && (
-            <p>현재 이상치가 탐지되지 않았습니다.</p>
-          )}
-          {displayOption === '2' && (
-            <p>
-              현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
-              평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
-              데이터 조치를 권장합니다.
-            </p>
-          )}
+          {renderResultMessage()}
           <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
             <ScatterPlotGraph data={data} />
           </div>
