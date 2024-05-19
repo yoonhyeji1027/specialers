@@ -2,115 +2,59 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar.js';
 import "../css/Aquarium_p.css";
-import LineGraph from '../jsx/LineGraph.jsx'
+import LocalLineGraph from '../jsx/LocalLineGraph.jsx'
 
 export default function Aquarium_p() {
 
-  const [tanks, setTanks] = useState([]);
-  const [barDataList, setBarDataList] = useState([{
-    idx: 0,
-    //mea_dt: '',
-    farm_id: 0,
-    tank_id: 0,
-    do: 0,
-    temperature: 0,
-    ph: 0,
-    //salinity: '',
-    formatted_mea_dt: 0
-  }])
+  const [selectedOption, setSelectedOption] = useState('분류');
+  const [data, setData] = useState([]);
+  const [displayOption, setDisplayOption] = useState(null);
 
-  const [lineDataList, setLineDataList] = useState([]);
-  let _lineDataList = [];
-
-  const [pieDataList, setPieDataList] = useState([
-    {
-      "id": "do",
-      "label": "do",
-      value: 0,
-      "color": "hsl(302, 70%, 50%)"
-    },
-    {
-      "id": "temperature",
-      "label": "temperature",
-      value: 0,
-      "color": "hsl(181, 70%, 50%)"
-    },
-    {
-      "id": "ph",
-      "label": "ph",
-      value: 0,
-      "color": "hsl(344, 70%, 50%)"
-    },
-    {
-      "id": "salinity",
-      "label": "salinity",
-      value: 0,
-      "color": "hsl(257, 70%, 50%)"
-    }
-  ])
+  const [tempDataList, setTempDataList] = useState([]);
+  let _tempDataList = [];
+  const [phDataList, setPhDataList] = useState([]);
+  let _phDataList = [];
+  const [doDataList, setDoDataList] = useState([]);
+  let _doDataList = [];
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/tanks');
-      const _barDataList = await response.data.tanks.map((tank, index) => ({
-        idx: tank.idx ?? 0,
-        //mea_dt: tank.mea_dt,
-        farm_id: tank.farm_id ?? 0,
-        tank_id: tank.tank_id ?? 0,
-        do: tank.do ?? 0,
-        temperature: tank.temperature ?? 0,
-        ph: tank.ph ?? 5,
-        //salinity: response.data[key].salinity,
-        formatted_mea_dt: tank.formatted_mea_dt ?? 0
-      }))
-      _lineDataList = [];
-      response.data.tanks.forEach((tank, index) => {
-        const id = tank.tank_id ?? 0;
-        const data = { x: tank.formatted_mea_dt ?? 0, y: tank.temperature ?? 0 };
-        const existingItemIndex = _lineDataList.findIndex(item => item.id === id);
-        if (existingItemIndex !== -1) {
-          _lineDataList[existingItemIndex].data.push(data);
-        } else {
-          _lineDataList.push({ id, data: [data] });
-        }
-      })
-      const _pieDataList = await response.data.tanks.filter((tank, index) => index === 9).map((tank, index) => ([
-        //idx: tank.idx ?? 0,
-        //mea_dt: tank.mea_dt,
-        //farm_id: tank.farm_id ?? 0,
-        //tank_id: tank.tank_id ?? 0,
-        {
-          id: 'do',
-          label: 'do',
-          value: tank.do ?? 0,
-          color: 'hsl(302, 70%, 50%)'
-        }, {
-          id: 'temperature',
-          label: 'temperature',
-          value: tank.temperature ?? 0,
-          color: 'hsl(181, 70%, 50%)'
-        }, {
-          id: 'ph',
-          label: 'ph',
-          value: tank.ph ?? 5,
-          color: 'hsl(344, 70%, 50%)'
-        }, {
-          id: 'salinity',
-          label: 'salinity',
-          value: tank.salinity ?? 0,
-          color: 'hsl(257, 70%, 50%)'
-        }
-        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
-      ]))
+      const local_response = await axios.get('http://localhost:3001/predict');
+      
+      _tempDataList = [];
+      _phDataList = [];
+      _doDataList = [];
+      local_response.data.predict.forEach(predict => {
+        const temp_data = { x: predict.formatted_mea_dt ?? 0, y: predict.temperature ?? 0 };
+        const ph_data = { x: predict.formatted_mea_dt ?? 0, y: predict.ph ?? 0 };
+        const do_data = { x: predict.formatted_mea_dt ?? 0, y: predict.do ?? 0 };
+        const existingItemIndex_temp = _tempDataList.findIndex(item => item.id === `Temperature`);
+        const existingItemIndex_do = _doDataList.findIndex(item => item.id === `DO`);
+        const existingItemIndex_ph = _phDataList.findIndex(item => item.id === `pH`);
 
-      setTanks(response.data.tanks);
-      setBarDataList(_barDataList);
-      setLineDataList(_lineDataList);
-      setPieDataList(_pieDataList.flat());
+        if (existingItemIndex_temp !== -1) {
+          _tempDataList[existingItemIndex_temp].data.push(temp_data); 
+        }
+        else if (existingItemIndex_temp === -1){
+          _tempDataList.push({ id: `Temperature`, data: [temp_data] });
+        }
+        if (existingItemIndex_do !== -1) {
+          _doDataList[existingItemIndex_do].data.push(do_data);
+        }
+        else if (existingItemIndex_do === -1){
+          _doDataList.push({ id: `DO`, data: [do_data] });
+        }
+        if (existingItemIndex_ph !== -1) {
+          _phDataList[existingItemIndex_ph].data.push(ph_data);
+        }
+        else if (existingItemIndex_ph === -1){
+          _phDataList.push({ id: `pH`, data: [ph_data] });
+        } 
+      });
 
-      console.log(_pieDataList);
-      console.log(pieDataList);
-      console.error('새로고침');
+      setTempDataList(_tempDataList);
+      setPhDataList(_phDataList);
+      setDoDataList(_doDataList);
     } catch (error) {
       console.error('데이터를 불러오는 중 에러 발생:', error);
     }
@@ -128,50 +72,151 @@ export default function Aquarium_p() {
     };
   }, []);
 
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handlePlotData = () => {
+    if (selectedOption !== '분류') {
+      setDisplayOption(selectedOption);
+      //const filteredData = outlierDataList.filter(item => item.id === selectedOption);
+      //setData([{ id: `category-${selectedOption}`, data: filteredData }]);
+    } else {
+      setDisplayOption('분류');
+    }
+  };
+
+
+  const renderResultMessage = () => {
+    if (displayOption === '분류') {
+      return (
+        <div className="multiple-graphs">
+          <div className="scatter-plot">
+            <LocalLineGraph data={doDataList} />
+          </div>
+          <div className="scatter-plot">
+            <LocalLineGraph data={tempDataList} />
+          </div>
+          <div className="scatter-plot">
+            <LocalLineGraph data={phDataList} />
+          </div>
+        </div>
+      );
+    }
+    else if (displayOption === 'DO'){
+      return (
+      <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
+        <LocalLineGraph data={doDataList} />
+      </div>
+      )
+    }
+    else if (displayOption === 'Temperature'){
+      return (
+      <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
+        <LocalLineGraph data={tempDataList} />
+      </div>
+      )
+    }
+    else if (displayOption === 'pH'){
+      return (
+      <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
+        <LocalLineGraph data={phDataList} />
+      </div>
+      )
+    }
+
+    }
+    const messageReturn = () => {
+      switch (displayOption) {
+        case 'DO':
+          return (
+            <div>
+              <h3>do에 대한 결과</h3>
+              {data[0]?.data[0]?.y >= 3 ? (
+                <p>현재 이상치가 탐지되지 않았습니다.</p>
+              ) : (
+                <p>
+                  현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                  평균 15.9 값을 지니지만 현재 d 값을 지니고 있습니다.<br />
+                  데이터 조치를 권장합니다.
+                </p>
+              )}
+            </div>
+          );
+        case 'Temperature':
+          return (
+            <div>
+              <h3>temperature에 대한 결과</h3>
+              {data[0]?.data[0]?.y >= 3 ? (
+                <p>현재 이상치가 탐지되지 않았습니다.</p>
+              ) : (
+                <p>
+                  현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                  평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                  데이터 조치를 권장합니다.
+                </p>
+              )}
+            </div>
+          );
+        case 'pH':
+          return (
+            <div>
+              <h3>ph에 대한 결과</h3>
+              {data[0]?.data[0]?.y >= 3 ? (
+                <p>현재 이상치가 탐지되지 않았습니다.</p>
+              ) : (
+                <p>
+                  현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
+                  평균 15.9 값을 지니지만 현재 5.5 값을 지니고 있습니다.<br />
+                  데이터 조치를 권장합니다.
+                </p>
+              )}
+            </div>
+          );
+        default:
+          return null;
+      }
+    };
+
+
 
     return (
       <div className='table-container'>
-        <table>
-          <NavBar />
-          
-          <div className='aquarium'>
-          <div className='title'>
-            <h3>수조선택
-            <select style={{ width: '250px', height: '40px', fontSize:'20px'}}>
-              <option  >
-                분류
-              </option>
-              <option >1</option>
-              <option >2</option>
+      <NavBar />
+      <div className='outlier'>
+        <div className='o_title'>
+          <h3>
+            데이터선택
+            <select
+              style={{ width: '250px', height: '40px', fontSize: '20px' }}
+              value={selectedOption}
+              onChange={handleSelectChange}
+            >
+              <option value='분류'>분류</option>
+              <option value='DO'>do</option>
+              <option value='Temperature'>temperature</option>
+              <option value='pH'>ph</option>
             </select>
-            </h3>
-          </div>
-
-          <div className='graph_board'>
-            <h4>수조 1의 수조 환경 예측 결과</h4>
-
-            <button>새로고침</button>
-
-            <div className='graph_view' style={{ width: '1700px', height: '700px' }}>
-              <LineGraph data={lineDataList} />
-            </div>
-          </div>
+            <button onClick={handlePlotData}>조회</button>
+          </h3>
         </div>
-
-          <footer>
-          <nav>
-            <a href="S_info.js" className="footer_link">회사소개</a>
-            <a href="J_info.js" className="footer_link">제품소개</a>
-            <a href="SalmonPage.js" className="footer_link">연어양식</a>
-            <a href="Map.js" className="footer_link">오시는길</a>
-          </nav>
-          <address>
-            <p>(주) 아쿠아포닉스</p>
-            <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
-          </address>
-        </footer>
-        </table>
-        
+        <div className='o_graph_board'>
+          {messageReturn()}
+          {renderResultMessage()} 
+        </div>
       </div>
+      <footer>
+        <nav>
+          <a href="S_info.js" className="footer_link">회사소개</a>
+          <a href="J_info.js" className="footer_link">제품소개</a>
+          <a href="SalmonPage.js" className="footer_link">연어양식</a>
+          <a href="Map.js" className="footer_link">오시는길</a>
+        </nav>
+        <address>
+          <p>(주) 아쿠아포닉스</p>
+          <p>주소: 강원특별자치도 강릉시 범일로 579번길 24</p>
+        </address>
+      </footer>
+    </div>
     );
   }

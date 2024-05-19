@@ -2,12 +2,19 @@
 // yarn add @nivo/line
 import { ResponsiveLine } from '@nivo/line'
 
+let firstDate = [];
+let lastDate = [];
+
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
 const LineGraph = ({ data /* see data tab */ }) => (
+
+    firstDate = data[0]?.data[0]?.x,
+    lastDate = data[0]?.data[data[0].data.length - 1]?.x,
+
     <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -29,10 +36,11 @@ const LineGraph = ({ data /* see data tab */ }) => (
             legend: 'transportation',
             legendOffset: 36,
             legendPosition: 'middle',
-            truncateTickAt: 0
+            truncateTickAt: 0,
+            tickValues: [firstDate, lastDate]  // 처음과 마지막 시간만 표시
         }}
         axisLeft={{
-            tickSize: 5,
+            tickSize: 5,    
             tickPadding: 5,
             tickRotation: 0,
             legend: 'count',
