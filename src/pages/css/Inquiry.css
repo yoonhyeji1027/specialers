@@ -25,6 +25,7 @@ p{margin-top: 20px; margin-bottom: 20px;}
 .Inquiry{
     padding: 50px 270px;
     margin-top: 50px;
+    min-height: calc(100vh - 30px);
 }
 .header{
     text-align: left;

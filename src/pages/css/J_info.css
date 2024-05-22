@@ -18,7 +18,8 @@
     padding: 80px 87.5px;
     text-align: left;
     margin-top: 20px;
-    width: 1900px
+    width: 1900px;
+    min-height: calc(80vh - 30px);
 }
 #j_info_text1{
     text-align: left;

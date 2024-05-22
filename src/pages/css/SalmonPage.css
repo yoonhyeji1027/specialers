@@ -76,6 +76,10 @@ p{margin-top: 20px; margin-bottom: 20px; font-size: 20px;}
 
 hr{margin: 50px 100px;}
 
+.salmon{
+  min-height: calc(80vh - 30px);
+}
+
 
 footer {
   border-top: 1px solid #ccc;                          

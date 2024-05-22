@@ -6,7 +6,7 @@ import PieGraph from '../jsx/PieGraph.jsx'
 import LineGraph from '../jsx/LineGraph.jsx'
 import BarGraph from '../jsx/BarGraph.jsx'
 
-export default function SalmonPage() {
+export default function SalmonPage() {    //여기 주석은 페이지 완성하고 쓸게
 
   const [tanks, setTanks] = useState([]);
   const [barDataList, setBarDataList] = useState([{
@@ -205,7 +205,7 @@ export default function SalmonPage() {
             <a href="S_info.js" className="footer_link">회사소개</a>
             <a href="J_info.js" className="footer_link">제품소개</a>
             <a href="SalmonPage.js" className="footer_link">연어양식</a>
-            <a href="Map.js" className="footer_link">오시는길</a>
+            <a href="Mapp.js" className="footer_link">오시는길</a>
           </nav>
           <address> {/* 링크가 필요 없는 주소 */}
             <p>(주) 아쿠아포닉스</p>

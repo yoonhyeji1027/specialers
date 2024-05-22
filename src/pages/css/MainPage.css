@@ -203,6 +203,10 @@ p{margin-top: 20px; margin-bottom: 20px;}
     padding: 0px 30px;
 }
 
+.main{
+    min-height: calc(80vh - 30px);
+}
+
 footer {
     border-top: 1px solid #ccc;                          
     background-color: #E3E3E3;

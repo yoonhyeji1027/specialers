@@ -112,6 +112,10 @@ p{margin-top: 20px; margin-bottom: 20px;}
     font-size: 20px;
 }
 
+.sinfo{
+    min-height: calc(80vh - 30px);
+}
+
 footer {
     border-top: 1px solid #ccc;                          
     background-color: #E3E3E3;

@@ -95,6 +95,10 @@ fieldset {
     margin-bottom: 80px;
 }
 
+.outlier{
+    min-height: calc(80vh - 30px);
+}
+
 footer {                             
     background-color: #E3E3E3;
     color: #515151;
