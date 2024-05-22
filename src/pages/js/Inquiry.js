@@ -1,8 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import "../css/Inquiry.css";
 import NavBar from './NavBar.js';
 
 export default function Inquiry() {
+    const [typeData, setTypeData] = useState('');
+    const [nameData, setNameData] = useState('');
+    const [phoneNumberData, setPhoneNumberData] = useState('');
+    const [emailData, setEmailData] = useState('');
+    const [emailAddressData, setEmailAddressData] = useState('');
+    const [titleData, setTitleData] = useState('');
+    const [contentsData, setContentsData] = useState('');
+
+    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedEmail, setSelectedEmail] = useState('');
+    
+
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+        setTypeData(event.target.value);
+    };
+    const handleEmailChange = (event) => {
+        setSelectedEmail(event.target.value);
+    };
+
+    const saveData = (selectedOption) => {
+        const inquiryData = {
+            type: typeData,
+            name: nameData,
+            phoneNumber: phoneNumberData,
+            email: emailData + '@' + (selectedEmail === '직접입력' ? emailAddressData : selectedEmail),
+            title: titleData,
+            contents: contentsData
+        };
+
+        fetch('http://localhost:3001/inquiry', { // 적절한 API 엔드포인트로 변경
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(inquiryData),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('문의가 성공적으로 제출되었습니다.');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('문의 제출 중 오류가 발생했습니다.');
+        });
+    }
+
     return (
         <div className='table-container'> {/* 반응형 웹 구현때문에 설정해뒀던 클래스명임 */}
             <table>
@@ -18,59 +67,61 @@ export default function Inquiry() {
                     <ul className='inquiry_list'> {/* 문의사항의 각 요소를 리스트로 정렬하여 질문별로 묶음 묶은 ul의 클래스명은 동일 */}
                         <li><img src="images/inquiry_1.png" width="25px" height="35px" alt="inquiry1" /></li>
                         <li><p id='title' style={{ color: '#515151' }}>분류</p></li>
-                        <select style={{ width: '350px', height: '40px' }}>
-                            <option  > {/* 입력받는 텍스트박스가 아닌 선택하는 텍스트 목록 */}
-                                분류
-                            </option>
-                            <option >제품 관련 문의</option>
-                            <option >회사 관련 문의</option>
+                        <select style={{ width: '350px', height: '40px' }}
+                                value={selectedOption}
+                                onChange={handleSelectChange}>
+                            <option value = '분류'> 분류</option>{/* 입력받는 텍스트박스가 아닌 선택하는 텍스트 목록 */}
+                            <option value = '제품 관련 문의'>제품 관련 문의</option>
+                            <option value = '회사 관련 문의'>회사 관련 문의</option>
                         </select>
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
                         <li><img src="images/inquiry_2.png" width="25px" height="35px" alt="inquiry2" /></li>
-                        <li><p id='title' style={{ color: '#515151' }}>성명</p></li>
-                        <li><input type="text" style={{ width: '250px', height: '40px', marginLeft:'-5px' }}></input></li>
+                        <li><p id='title' style={{ color: '#515151' }}>name</p></li>
+                        <li><input type="text" style={{ width: '250px', height: '40px', marginLeft:'-5px' }}
+                                    onChange={(n) => setNameData(n.target.value)}></input></li>
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
                         <li><img src="images/inquiry_3.png" width="25px" height="35px" alt="inquiry3" /></li>
                         <li><p id='title' style={{ color: '#515151' }}>휴대번호</p></li>
-                        <li><input type="text" style={{ width: '100px', height: '40px', marginLeft:'-45px' }}></input></li>
-                        <li><p style={{ color: '#515151' }}>-</p></li>
-                        <li><input type="text" style={{ width: '100px', height: '40px' }}></input></li>
-                        <li><p style={{ color: '#515151' }}>-</p></li>
-                        <li><input type="text" style={{ width: '100px', height: '40px' }}></input></li>
+                        <li><input type="text" style={{ width: '300px', height: '40px', marginLeft:'-45px' }}
+                                    onChange={(pn) => setPhoneNumberData(pn.target.value)}></input></li>
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
                         <li><img src="images/inquiry_4.png" width="25px" height="25px" alt="inquiry4" style={{marginTop:'10px'}}/></li>
                         <li><p id='title' style={{ color: '#515151' }}>이메일</p></li>
-                        <li><input type="text" style={{ width: '200px', height: '40px', marginLeft:'-25px' }}></input></li>
+                        <li><input type="text" style={{ width: '200px', height: '40px', marginLeft:'-25px' }}
+                                    onChange={(e) => setEmailData(e.target.value)}></input></li>
                         <li><p style={{ color: '#515151' }}>@</p></li>
-                        <li><input type="text" style={{ width: '150px', height: '40px' }}></input></li>
-                        <select style={{ width: '150px', height: '40px' }}>
-                            <option  >
-                                직접입력
-                            </option>
-                            <option >naver.com</option>
-                            <option >gamil.com</option>
+                        <li><input type="text" style={{ width: '150px', height: '40px' }} placeholder={selectedEmail}
+                                    onChange={(e_address) => setEmailAddressData(e_address.target.value)}></input></li>
+                        <select style={{ width: '150px', height: '40px' }}
+                                value={selectedEmail}
+                                onChange={handleEmailChange}>
+                            <option value ='직접입력'>직접입력</option>
+                            <option value ='naver.com'>naver.com</option>
+                            <option value ='gmail.com'>gamil.com</option>
                         </select>
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
                         <li><img src="images/inquiry_5.png" width="25px" height="35px" alt="inquiry5" /></li>
                         <li><p id='title' style={{ color: '#515151' }}>제목</p></li>
-                        <li><input type="text" style={{ width: '900px', height: '40px', marginLeft:'-5px' }}></input></li>
+                        <li><input type="text" style={{ width: '900px', height: '40px', marginLeft:'-5px' }}
+                                    onChange={(t) => setTitleData(t.target.value)}></input></li>
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
                         <li><img src="images/inquiry_6.png" width="25px" height="35px" alt="inquiry6" /></li>
                         <li><p id='title' style={{ color: '#515151' }}>내용</p></li>
-                        <li><input type="text" style={{ width: '900px', height: '250px', marginLeft:'-5px' }}></input></li>
+                        <li><input type="text" style={{ width: '900px', height: '250px', marginLeft:'-5px' }}
+                                    onChange={(c) => setContentsData(c.target.value)}></input></li>
                     </ul>
 
-                    <button>제출하기</button>
+                    <button onClick={() => saveData()}>제출하기</button>
 
                 </div>
 

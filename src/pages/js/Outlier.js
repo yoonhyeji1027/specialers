@@ -35,9 +35,27 @@ export default function Outlier() {
   const [salinityRealDataList, setSalinityRealDataList] = useState([]);
   let _salinityRealDataList = [];
 
+  const [do_min, setDoMin] = useState();
+  let _do_min;
+  const [do_max, setDoMax] = useState();
+  let _do_max;
+  const [ph_min, setPhMin] = useState();
+  let _ph_min;
+  const [ph_max, setPhMax] = useState();
+  let _ph_max;
+  const [temp_min, setTempMin] = useState();
+  let _temp_min;
+  const [temp_max, setTempMax] = useState();
+  let _temp_max; 
+  const [salinity_min, setSalinityMin] = useState();
+  let _salinity_min;
+  const [salinity_max, setSalinityMax] = useState();
+  let _salinity_max;
+
   const fetchData = async () => {
     try {
       const z_score_response = await axios.get('http://localhost:3001/z_score');
+      const MinMax_response = await axios.get('http://localhost:3001/MMA');
       
       _tempDataList = [];
       _phDataList = [];
@@ -51,6 +69,37 @@ export default function Outlier() {
       _phRealDataList = [];
       _doRealDataList = [];
       _salinityRealDataList = [];
+      
+      _do_min = 0;
+      _do_max = 0;
+      _ph_min = 0;
+      _ph_max = 0;
+      _temp_min = 0;
+      _temp_max = 0;
+      _salinity_min = 0;
+      _salinity_max = 0;
+
+      MinMax_response.data.MMA.forEach(MMA => {
+        _do_min = MMA.do_min;
+        _do_max = MMA.do_max;
+        _ph_min = MMA.ph_min;
+        _ph_max = MMA.ph_max;
+        _temp_min = MMA.temperature_min;
+        _temp_max = MMA.temperature_max;
+        _salinity_min = MMA.salinity_min;
+        _salinity_max = MMA.salinity_max;
+      })
+
+      const SetData = () => {
+        setDoMin(_do_min);
+        setDoMax(_do_max);
+        setPhMin(_ph_min);
+        setPhMax(_ph_max);
+        setTempMin(_temp_min);
+        setTempMax(_temp_max);
+        setSalinityMin(_salinity_min);
+        setSalinityMax(_salinity_max);
+      };
 
       z_score_response.data.z_score.forEach(z_score => {
         // 여기는 그래프에 들어갈거
@@ -176,6 +225,9 @@ export default function Outlier() {
       setPhRealDataList(_phRealDataList);
       setDoRealDataList(_doRealDataList);
       setSalinityRealDataList(_salinityRealDataList);
+      //최소최대
+      SetData();
+
     } catch (error) {
       console.error('데이터를 불러오는 중 에러 발생:', error);
     }
@@ -272,7 +324,6 @@ export default function Outlier() {
         return <p>데이터를 불러오는 중...</p>;
       }
   
-      console.log(doDataList[0].data);
       const isOutlier = (value, min, max) => value < min || value > max;
       //z_score
       const lastDoValue = doDataList[0].data[doDataList[0].data.length - 1].y;
@@ -296,15 +347,17 @@ export default function Outlier() {
         case 'DO':
           return (
             <div>
-              <h3>do에 대한 결과</h3>
+              <h3>DO에 대한 결과</h3>
               {isOutlier(lastDoValue, -1.5, 1.5) ? (
                 <p>
                   현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
-                  평균 {lastDoMeanValue} 값을 지니지만 현재 {lastDoRealValue} 값을 지니고 있습니다.<br />
+                  최소값 : {do_min}, 최대값 : {do_max} 평균 : {lastDoMeanValue} 의 값을 가집니다.<br/>
+                  현재는 {lastDoRealValue} 값을 지니고 있습니다.<br />
                   데이터 조치를 권장합니다.
                 </p>
               ) : (
-                <p>현재 이상치가 탐지되지 않았습니다. 현재 값: {lastDoRealValue}</p>
+                <p>현재 이상치가 탐지되지 않았습니다.<br />
+                   현재 값 : {lastDoRealValue}, 최소값 : {do_min}, 최대값 : {do_max} 평균 : {lastDoMeanValue}<br/></p>
               )}
             </div>
           );
@@ -315,11 +368,13 @@ export default function Outlier() {
               {isOutlier(lastTempValue, -1.5, 1.5) ? (
                 <p>
                 현재 Temperature 데이터의 이상치가 탐지 되었습니다.<br />
-                평균 {lastTempMeanValue} 값을 지니지만 현재 {lastTempRealValue} 값을 지니고 있습니다.<br />
+                최소값 : {temp_min}, 최대값 : {temp_max} 평균 : {lastTempMeanValue} 의 값을 가집니다.<br/>
+                현재는 {lastTempRealValue} 값을 지니고 있습니다.<br />
                 데이터 조치를 권장합니다.
               </p>
             ) : (
-              <p>현재 이상치가 탐지되지 않았습니다. 현재 값: {lastTempRealValue}</p>
+              <p>현재 이상치가 탐지되지 않았습니다.<br />
+                 현재 값 : {lastTempRealValue}, 최소값 : {temp_min}, 최대값 : {temp_max} 평균 : {lastTempMeanValue}<br/></p>
             )}
           </div>
           );
@@ -329,12 +384,14 @@ export default function Outlier() {
               <h3>ph에 대한 결과</h3>
               {isOutlier(lastPhValue, -1.5, 1.5) ? (
                 <p>
-                현재 PH 데이터의 이상치가 탐지 되었습니다.<br />
-                평균 {lastPhMeanValue} 값을 지니지만 현재 {lastPhRealValue} 값을 지니고 있습니다.<br />
+                현재 ph 데이터의 이상치가 탐지 되었습니다.<br />
+                최소값 : {ph_min}, 최대값 : {ph_max} 평균 : {lastPhMeanValue} 의 값을 가집니다.<br/>
+                현재는 {lastPhRealValue} 값을 지니고 있습니다.<br />
                 데이터 조치를 권장합니다.
               </p>
             ) : (
-              <p>현재 이상치가 탐지되지 않았습니다. 현재 값: {lastPhRealValue}</p>
+              <p>현재 이상치가 탐지되지 않았습니다.<br />
+                 현재 값 : {lastPhRealValue}, 최소값 : {ph_min}, 최대값 : {ph_max} 평균 : {lastPhMeanValue}<br/></p>
             )}
           </div>
           );
@@ -345,11 +402,13 @@ export default function Outlier() {
               {isOutlier(lastSalinityValue, -1.5, 1.5) ? (
                 <p>
                 현재 Salinity 데이터의 이상치가 탐지 되었습니다.<br />
-                평균 {lastSalinityMeanValue} 값을 지니지만 현재 {lastSalinityRealValue} 값을 지니고 있습니다.<br />
+                최소값 : {salinity_min}, 최대값 : {salinity_max} 평균 : {lastSalinityMeanValue} 의 값을 가집니다.<br/>
+                현재는 {lastSalinityRealValue} 값을 지니고 있습니다.<br />
                 데이터 조치를 권장합니다.
               </p>
             ) : (
-              <p>현재 이상치가 탐지되지 않았습니다. 현재 값: {lastSalinityRealValue}</p>
+              <p>현재 이상치가 탐지되지 않았습니다.<br />
+                 현재 값 : {lastSalinityRealValue}, 최소값 : {salinity_min}, 최대값 : {salinity_max} 평균 : {lastSalinityMeanValue}<br/></p>
             )}
           </div>
           );
