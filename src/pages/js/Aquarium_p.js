@@ -5,7 +5,7 @@ import "../css/Aquarium_p.css";
 import LocalLineGraph from '../jsx/LocalLineGraph.jsx'
 
 export default function Aquarium_p() {
-
+  
   //변수 지정(파란글씨),  지정한 변수 값 설정해주기(노란글씨)
   const [selectedOption, setSelectedOption] = useState('전체');
   const [displayOption, setDisplayOption] = useState(null);
