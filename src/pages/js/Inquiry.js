@@ -3,6 +3,7 @@ import "../css/Inquiry.css";
 import NavBar from './NavBar.js';
 
 export default function Inquiry() {
+    //변수설정
     const [typeData, setTypeData] = useState('');
     const [nameData, setNameData] = useState('');
     const [phoneNumberData, setPhoneNumberData] = useState('');
@@ -17,15 +18,15 @@ export default function Inquiry() {
 
 
     const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
+        setSelectedOption(event.target.value);      //setSelectedOption함수로 event.target.value값 저장
         setTypeData(event.target.value);
     };
     const handleEmailChange = (event) => {
         setSelectedEmail(event.target.value);
     };
 
-    const saveData = (selectedOption) => {
-        const inquiryData = {
+    const saveData = () => {
+        const inquiryData = {       //각 키에 맞는 데이터 저장
             type: typeData,
             name: nameData,
             phoneNumber: phoneNumberData,
@@ -34,19 +35,20 @@ export default function Inquiry() {
             contents: contentsData
         };
 
-        fetch('http://localhost:3001/inquiry', { // 적절한 API 엔드포인트로 변경
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
+        fetch('http://localhost:3001/inquiry', { // 데이터를 보낼 엔드포인트 지정
+            method: 'POST',                      //요청 메서드를 POST로 지정(서버에 데이터를 생성하거나 제출할 때 사용하는 메서드)
+            headers: {                           //헤더 설정
+                'Content-Type': 'application/json',     //Content헤더는 데이터 타입 설정하는 헤더,       json데이터로 서버에 보냄
             },
-            body: JSON.stringify(inquiryData),
-        })
-        .then(response => response.json())
-        .then(data => {
+            body: JSON.stringify(inquiryData),   //inquiryData를 json 문자열로 변환 후 서버에 보냄
+        })          //fetch요청 완료되면 Promise를 반환함
+                    //.then과 .catch가 Promise 처리함
+        .then(response => response.json())       //서버로부터 응답이 오면 json으로 파싱. 파싱 완료 후 다음 .then으로 넘어감
+        .then(data => {             //json으로 파싱된 응답데이터 data에 저장. data를 콘솔에 출력 후 사용자에게 성공메시지 출력.
             console.log('Success:', data);
             alert('문의가 성공적으로 제출되었습니다.');
         })
-        .catch((error) => {
+        .catch((error) => {             //에러 출력
             console.error('Error:', error);
             alert('문의 제출 중 오류가 발생했습니다.');
         });
@@ -80,7 +82,7 @@ export default function Inquiry() {
                         <li><img src="images/inquiry_2.png" width="25px" height="35px" alt="inquiry2" /></li>
                         <li><p id='title' style={{ color: '#515151' }}>name</p></li>
                         <li><input type="text" style={{ width: '250px', height: '40px', marginLeft:'-5px' }}
-                                    onChange={(n) => setNameData(n.target.value)}></input></li>
+                                    onChange={(n) => setNameData(n.target.value)}></input></li>         {/*}텍스트가 바뀔때마다 setNameData함수를 통해서 n.target.value값을 nameData에 저장{*/}
                     </ul>
                     <hr style={{ border: 'none', borderTop: '2px dotted #000' }} />
                     <ul className='inquiry_list'>
@@ -121,7 +123,7 @@ export default function Inquiry() {
                                     onChange={(c) => setContentsData(c.target.value)}></input></li>
                     </ul>
 
-                    <button onClick={() => saveData()}>제출하기</button>
+                    <button onClick={() => saveData()}>제출하기</button>        {/*}버튼 클릭하면 saveData함수 실행{*/}
 
                 </div>
 

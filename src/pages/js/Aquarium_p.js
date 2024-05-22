@@ -5,6 +5,8 @@ import "../css/Aquarium_p.css";
 import LocalLineGraph from '../jsx/LocalLineGraph.jsx'
 
 export default function Aquarium_p() {
+  
+  //변수 지정(파란글씨),  지정한 변수 값 설정해주기(노란글씨)
   const [selectedOption, setSelectedOption] = useState('분류');
   const [displayOption, setDisplayOption] = useState(null);
 
@@ -23,10 +25,12 @@ export default function Aquarium_p() {
   let _doMseDataList = [];
   
 
+  //15초마다 실행시킬 함수 (데이터 설정같은거 들어있음)
   const fetchData = async () => {
     try {
-      const local_response = await axios.get('http://localhost:3001/predict');
+      const local_response = await axios.get('http://localhost:3001/predict'); //.get()함수로 /predict라는 엔드포인트에 데이터 요청해서 local_response에 받은 데이터 저장.
       
+      //이거는 임시 배열
       _tempDataList = [];
       _phDataList = [];
       _doDataList = [];
@@ -35,12 +39,14 @@ export default function Aquarium_p() {
       _phMseDataList = [];
       _doMseDataList = [];
 
+      //local_response에 data에 있는 predict라는 데이터를 한줄씩 잘라서 predict에 저장한 후 함수안에있는 코드를 실행시키는 for문같은 코드임.
       local_response.data.predict.forEach(predict => {
         //그래프, 예측값
-        const temp_data = { x: predict.formatted_mea_dt ?? 0, y: predict.temperature ?? 0 };
+        const temp_data = { x: predict.formatted_mea_dt ?? 0, y: predict.temperature ?? 0 };  //predict에 있는 formatted_mea_dt변수를 x(key)에, temperature을 y(key)에 저장한 후 temp_data에 저장. 
         const ph_data = { x: predict.formatted_mea_dt ?? 0, y: predict.ph ?? 0 };
         const do_data = { x: predict.formatted_mea_dt ?? 0, y: predict.do ?? 0 };
-        const existingItemIndex_temp = _tempDataList.findIndex(item => item.id === `Temperature`);
+        const existingItemIndex_temp = _tempDataList.findIndex(item => item.id === `Temperature`);   //_tempDataList 임시배열에 id(key)값이 Temperature이 있는지 확인 후 
+                                                                                                     //있으면 마지막 index를 없으면 -1을 반환하여 existingItemIndex_temp에 저장
         const existingItemIndex_do = _doDataList.findIndex(item => item.id === `DO`);
         const existingItemIndex_ph = _phDataList.findIndex(item => item.id === `pH`);
         //평균오차값
@@ -52,11 +58,11 @@ export default function Aquarium_p() {
         const existingItemIndex_do_mse = _doMseDataList.findIndex(item => item.id === `DO`);
 
         //그래프, 예측값
-        if (existingItemIndex_temp !== -1) {
-          _tempDataList[existingItemIndex_temp].data.push(temp_data); 
+        if (existingItemIndex_temp !== -1) {    //existingItemIndex_temp에 저장된 값이 -1이 아니면
+          _tempDataList[existingItemIndex_temp].data.push(temp_data);   //_tempDataList의 existingItemIndex_temp번째 방에 temp_data를 넣어줌
         }
-        else if (existingItemIndex_temp === -1){
-          _tempDataList.push({ id: `Temperature`, data: [temp_data] });
+        else if (existingItemIndex_temp === -1){  //existingItemIndex_temp에 저장된 값이 -1이면
+          _tempDataList.push({ id: `Temperature`, data: [temp_data] });   //_tempDataList에 id는 Temperature, data에는 temp_data를 저장한다.
         }
         if (existingItemIndex_do !== -1) {
           _doDataList[existingItemIndex_do].data.push(do_data);
@@ -92,26 +98,25 @@ export default function Aquarium_p() {
         } 
       });
       //그래프, 예측값
-      setTempDataList(_tempDataList);
+      setTempDataList(_tempDataList);   //setTempDataList함수로 _tempDataList를 tempDataList에 저장
       setPhDataList(_phDataList);
       setDoDataList(_doDataList);
       //평균오차값
       setTempMseDataList(_tempMseDataList);
       setPhMseDataList(_phMseDataList);
       setDoMseDataList(_doMseDataList);
-    } catch (error) {
+    } catch (error) {   //에러떴을때 실행하는 코드(대안흐름)
       console.error('데이터를 불러오는 중 에러 발생:', error);
     }
   };
 
-
+  //가장먼저 실행되는 함수
   useEffect(() => {
     fetchData(); // 컴포넌트가 마운트되었을 때 한 번 데이터를 불러옴
     const intervalId = setInterval(fetchData, 15000);
     // 15초마다 fetchData 함수 실행
 
     return () => {
-      console.log('새로고침');
       clearInterval(intervalId); // 컴포넌트가 언마운트될 때 타이머 해제
     };
   }, []);
@@ -172,14 +177,14 @@ export default function Aquarium_p() {
   
     }
     const messageReturn = () => {
-      if (doDataList.length === 0 || !doDataList[0] || !doDataList[0].data) {
+      if (doDataList.length === 0 || !doDataList[0] || !doDataList[0].data) {   //doDataList에 데이터가 있는지 없는지 확인 후 없으면 return값 출력
         return <p>데이터를 불러오는 중...</p>;
       }
       if (doMseDataList.length === 0 || !doMseDataList[0] || !doMseDataList[0].data) {
         return <p>데이터를 불러오는 중...</p>;
       }
 
-      const DoValue = doDataList[0].data[doDataList[0].data.length - 1].y;
+      const DoValue = doDataList[0].data[doDataList[0].data.length - 1].y;    //doDataList의 data배열에 들어있는 마지막 데이터를 추출하여 DoValue에 저장.
       const TempValue = tempDataList[0].data[tempDataList[0].data.length - 1].y;
       const PhValue = phDataList[0].data[phDataList[0].data.length - 1].y;
 

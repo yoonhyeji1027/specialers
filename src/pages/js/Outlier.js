@@ -54,9 +54,10 @@ export default function Outlier() {
 
   const fetchData = async () => {
     try {
-      const z_score_response = await axios.get('http://localhost:3001/z_score');
-      const MinMax_response = await axios.get('http://localhost:3001/MMA');
+      const z_score_response = await axios.get('http://localhost:3001/z_score');  //.get()함수로 /z_score라는 엔드포인트에 데이터 요청해서 z_score_response에 받은 데이터 저장.
+      const MinMax_response = await axios.get('http://localhost:3001/MMA');       //.get()함수로 /MMA라는 엔드포인트에 데이터 요청해서 MinMax_response에 받은 데이터 저장.
       
+      //임시 배열
       _tempDataList = [];
       _phDataList = [];
       _doDataList = [];
@@ -70,6 +71,7 @@ export default function Outlier() {
       _doRealDataList = [];
       _salinityRealDataList = [];
       
+      //임시 변수
       _do_min = 0;
       _do_max = 0;
       _ph_min = 0;
@@ -79,8 +81,9 @@ export default function Outlier() {
       _salinity_min = 0;
       _salinity_max = 0;
 
+      //MinMax_response에 data에 있는 MMA라는 데이터를 한줄씩 잘라서 MMA에 저장한 후 함수안에있는 코드를 실행시키는 for문같은 코드임.
       MinMax_response.data.MMA.forEach(MMA => {
-        _do_min = MMA.do_min;
+        _do_min = MMA.do_min;   //MMA에 있는 do_min의 값을 _do_min에 저장
         _do_max = MMA.do_max;
         _ph_min = MMA.ph_min;
         _ph_max = MMA.ph_max;
@@ -90,8 +93,9 @@ export default function Outlier() {
         _salinity_max = MMA.salinity_max;
       })
 
+      //데이터 저장하는 함수
       const SetData = () => {
-        setDoMin(_do_min);
+        setDoMin(_do_min);    //setDoMin함수로 _do_min을 do_min에 저장
         setDoMax(_do_max);
         setPhMin(_ph_min);
         setPhMax(_ph_max);
@@ -101,6 +105,7 @@ export default function Outlier() {
         setSalinityMax(_salinity_max);
       };
 
+      //Aquariup_p.js 43번째 줄이랑 같은 코드, 안에 변수 들어가는것만 다름
       z_score_response.data.z_score.forEach(z_score => {
         // 여기는 그래프에 들어갈거
         const temp_data = { x: z_score.formatted_mea_dt ?? 0, y: z_score.temp ?? 0 };
@@ -314,7 +319,7 @@ export default function Outlier() {
     };
 
     const messageReturn = () => {
-      if (doDataList.length === 0 || !doDataList[0] || !doDataList[0].data) {
+      if (doDataList.length === 0 || !doDataList[0] || !doDataList[0].data) {   //Aquarium_p.js에 180째줄이랑 같은 코드, 안에 들어가는 변수만 다름
         return <p>데이터를 불러오는 중...</p>;
       }
       if (doMeanDataList.length === 0 || !doMeanDataList[0] || !doMeanDataList[0].data) {
@@ -324,7 +329,7 @@ export default function Outlier() {
         return <p>데이터를 불러오는 중...</p>;
       }
   
-      const isOutlier = (value, min, max) => value < min || value > max;
+      const isOutlier = (value, min, max) => value < min || value > max;    //value값이 min값보다 작거나, max값보다 크면 True반환. 아니면 False
       //z_score
       const lastDoValue = doDataList[0].data[doDataList[0].data.length - 1].y;
       const lastTempValue = tempDataList[0].data[tempDataList[0].data.length - 1].y;

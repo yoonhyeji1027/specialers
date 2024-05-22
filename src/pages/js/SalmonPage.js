@@ -6,7 +6,7 @@ import PieGraph from '../jsx/PieGraph.jsx'
 import LineGraph from '../jsx/LineGraph.jsx'
 import BarGraph from '../jsx/BarGraph.jsx'
 
-export default function SalmonPage() {
+export default function SalmonPage() {    //여기 주석은 페이지 완성하고 쓸게
 
   const [tanks, setTanks] = useState([]);
   const [barDataList, setBarDataList] = useState([{
