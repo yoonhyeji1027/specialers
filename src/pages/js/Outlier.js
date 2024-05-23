@@ -5,7 +5,7 @@ import ScatterPlotGraph from '../jsx/ScatterPlotGraph.jsx';
 import "../css/Outlier.css";
 
 export default function Outlier() {
-  const [selectedOption, setSelectedOption] = useState('분류');
+  const [selectedOption, setSelectedOption] = useState('전체');
   const [displayOption, setDisplayOption] = useState(null);
 
   const [tempDataList, setTempDataList] = useState([]);
@@ -56,7 +56,7 @@ export default function Outlier() {
     try {
       const z_score_response = await axios.get('http://localhost:3001/z_score');  //.get()함수로 /z_score라는 엔드포인트에 데이터 요청해서 z_score_response에 받은 데이터 저장.
       const MinMax_response = await axios.get('http://localhost:3001/MMA');       //.get()함수로 /MMA라는 엔드포인트에 데이터 요청해서 MinMax_response에 받은 데이터 저장.
-      
+      console.log(z_score_response);
       //임시 배열
       _tempDataList = [];
       _phDataList = [];
@@ -105,6 +105,7 @@ export default function Outlier() {
         setSalinityMax(_salinity_max);
       };
 
+      
       //Aquariup_p.js 43번째 줄이랑 같은 코드, 안에 변수 들어가는것만 다름
       z_score_response.data.z_score.forEach(z_score => {
         // 여기는 그래프에 들어갈거
@@ -258,21 +259,21 @@ export default function Outlier() {
 
   const handlePlotData = () => {
     console.log("plot");
-    if (selectedOption !== '분류') {
+    if (selectedOption !== '전체') {
       setDisplayOption(selectedOption);
       //const filteredData = outlierDataList.filter(item => item.id === selectedOption);
       //setData([{ id: `category-${selectedOption}`, data: filteredData }]);
     } else {
-      setDisplayOption('분류');
+      setDisplayOption('전체');
     }
   };
 
 
   const renderResultMessage = () => {
     console.log("result");
-    if (displayOption === '분류') {
+    if (displayOption === '전체') {
       return (
-        <div className="multiple-graphs">
+        <div className="multiple-graphs" style={{display: 'flex', flexWrap: 'nowrap', textAlign: 'center', width:'1600px', margin: '50px 80px' }}>
           <div className="scatter-plot">
             <ScatterPlotGraph data={tempDataList} />
           </div>
@@ -291,7 +292,7 @@ export default function Outlier() {
     else if (displayOption === 'DO'){
       return (
       <div className='o_graph_view' style={{ width: '800px', height: '500px' }}>
-        <ScatterPlotGraph data={doDataList} />
+        <ScatterPlotGraph data={doDataList}  />
       </div>
       )
     }
@@ -352,7 +353,8 @@ export default function Outlier() {
         case 'DO':
           return (
             <div>
-              <h3>DO에 대한 결과</h3>
+              <h3 id='graph_title'>DO에 대한 결과</h3>
+              <p style={{marginTop:'100px'}}>결과:</p>
               {isOutlier(lastDoValue, -1.5, 1.5) ? (
                 <p>
                   현재 DO 데이터의 이상치가 탐지 되었습니다.<br />
@@ -369,7 +371,8 @@ export default function Outlier() {
         case 'Temperature':
           return (
             <div>
-              <h3>temperature에 대한 결과</h3>
+              <h3 id='graph_title'>Temperature에 대한 결과</h3>
+              <p style={{marginTop:'100px'}}>결과:</p>
               {isOutlier(lastTempValue, -1.5, 1.5) ? (
                 <p>
                 현재 Temperature 데이터의 이상치가 탐지 되었습니다.<br />
@@ -386,7 +389,8 @@ export default function Outlier() {
         case 'pH':
           return (
             <div>
-              <h3>ph에 대한 결과</h3>
+              <h3 id='graph_title'>pH에 대한 결과</h3>
+              <p style={{marginTop:'100px'}}>결과:</p>
               {isOutlier(lastPhValue, -1.5, 1.5) ? (
                 <p>
                 현재 ph 데이터의 이상치가 탐지 되었습니다.<br />
@@ -402,8 +406,9 @@ export default function Outlier() {
           );
         case 'salinity':
           return (
-            <div>
-              <h3>salinity에 대한 결과</h3>
+            <div id='graph_title'>
+              <h3>Salinity에 대한 결과</h3>
+              <p style={{marginTop:'100px'}}>결과:</p>
               {isOutlier(lastSalinityValue, -1.5, 1.5) ? (
                 <p>
                 현재 Salinity 데이터의 이상치가 탐지 되었습니다.<br />
@@ -435,11 +440,11 @@ export default function Outlier() {
               value={selectedOption}
               onChange={handleSelectChange}
             >
-              <option value='분류'>분류</option>
-              <option value='DO'>do</option>
-              <option value='Temperature'>temperature</option>
-              <option value='pH'>ph</option>
-              <option value='salinity'>salinity</option>
+              <option value='전체'>전체 데이터</option>
+              <option value='DO'>DO</option>
+              <option value='Temperature'>Temperature</option>
+              <option value='pH'>pH</option>
+              <option value='salinity'>Salinity</option>
             </select>
             <button onClick={handlePlotData}>조회</button>
           </h3>

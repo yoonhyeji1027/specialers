@@ -47,31 +47,32 @@ p{margin-top: 20px; margin-bottom: 20px; font-size: 20px;}
     margin-left: 170px;
   }
 
-.graph {
-    display: flex;
-    flex-direction: column;
+.sp_graph {
     padding: 50px 50px;
   }
   
-  .graph_data {
+  .sp_graph_data {
+    text-align: center;
+    padding: 50px 0px;
+  }
+  .sp_graph_data h3{
+    width: 1780px;
+  }
+  
+  .sp_graph_view {
     display: flex;
-    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0px 100px;
+    width: 1780px;
   }
   
-  .graph_view {
-    margin-top: 70px;
-    margin-left: 20px; 
-    margin-bottom: 70px;
-    margin-right: 100px;
-    order: 2; 
-  }
-  
-  #graph_text {
+  #sp_graph_text {
     flex-grow: 1;
     order: 1; 
-    text-align: left;
-    margin-left: 100px;
-    width: 735px;
+    width: 1780px;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0px 430px;
   }
 
 hr{margin: 50px 100px;}

@@ -17,13 +17,9 @@ fieldset {
     margin: 10px 0;
 }
 
-.outlier{
-    margin: 40px;
-}
-
 .o_title{
     text-align: left;
-    padding-left: 100px;
+    padding-left: 50px;
     padding-top: 150px;
 }
 .o_title select{
@@ -43,11 +39,6 @@ fieldset {
     margin-right: 50px;
     margin-top: 50px;
 }
-.o_graph_board h3{
-    text-align: left;
-    padding-left: 450px;
-    padding-top: 100px;
-}
 .o_graph_board h4{
     margin-top: 50px;
     text-align: left;
@@ -55,12 +46,20 @@ fieldset {
 }
 .o_graph_board p{
     text-align: left;
-    margin-left: 270px;
+    margin-left: 100px;
 }
 
+#graph_title{
+    font-size: 25px;
+    margin-top: 0px;
+    margin-left: 750px;
+}
 .o_graph_view {
     width: 800px;
     height: 500px;
+    margin-top: -250px;
+    margin-left: 900px;
+    margin-bottom: 80px;
   }
   
   .grid-container {
@@ -89,14 +88,9 @@ fieldset {
   }
   
 
-.o_graph_view{
-    margin-top: -380px;
-    margin-left: 900px;
-    margin-bottom: 80px;
-}
 
 .outlier{
-    min-height: calc(80vh - 30px);
+    min-height: calc(90vh - 30px);
 }
 
 footer {                             

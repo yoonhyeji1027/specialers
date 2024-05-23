@@ -168,33 +168,49 @@ export default function SalmonPage() {    //여기 주석은 페이지 완성하
 
         <hr style={{ borderStyle: 'dotted' }} />
 
-        <div className='graph'> {/*그래프 전체 묶음 */}
-          <div className='graph_data'> {/*각 그래프별 묶음*/}
-            <div className='graph_view' style={{ width: "823px", height: "768px" }}>
+        <div className='sp_graph'> {/*그래프 전체 묶음 */}
+          <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
+            <h3 style={{ color: '#4D606B' }}>DO 데이터</h3>
+            <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }} >
               <BarGraph data={barDataList} />
-            </div>
-            <div id='graph_text'>
-              <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
-              <p style={{ color: '#515151' }}>연어 양식장 관리를 하고있는 곳 입니다.<br />24시간동안 작동하며 연어의 생태를 보다 더 자세하게<br />관찰하기 위해 관리하고 있습니다.<br />실시간으로 계속 작동하고 있습니다.</p>
-            </div>
-          </div>
-          <div className='graph_data'>
-            <div className='graph_view' style={{ height: '823px', width: '768px' }}>
               <LineGraph data={lineDataList} />
             </div>
-
-            <div id='graph_text'>
-              <h3 style={{ color: '#4D606B' }}>02_실시간 수조영상</h3>
-              <p style={{ color: '#515151' }}>연어 양식장 관리를 하고있는 곳 입니다.<br />24시간동안 작동하며 연어의 생태를 보다 더 자세하게<br />관찰하기 위해 관리하고 있습니다.<br />실시간으로 계속 작동하고 있습니다.</p>
+            <div id='sp_graph_text' >
+              <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
+              <p style={{ color: '#515151', paddingLeft: '350px' }}>LineGraph</p>
             </div>
           </div>
-          <div className='graph_data'>
-            <div className='graph_view' style={{ height: '823px', width: '768px' }}>
-              <PieGraph data={pieDataList} />
+          <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
+            <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
+            <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }}>
+              <BarGraph data={barDataList} />
+              <LineGraph data={lineDataList} />
             </div>
-            <div id='graph_text'>
-              <h3 style={{ color: '#4D606B' }}>03_실시간 수조이미지</h3>
-              <p style={{ color: '#515151' }}>연어 양식장 관리를 하고있는 곳 입니다.<br />24시간동안 작동하며 연어의 생태를 보다 더 자세하게<br />관찰하기 위해 관리하고 있습니다.<br />실시간으로 계속 작동하고 있습니다.</p>
+            <div id='sp_graph_text'>
+              <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
+              <p style={{ color: '#515151', paddingLeft: '350px' }}>LineGraph</p>
+            </div>
+          </div>
+          <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
+            <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
+            <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }}>
+              <BarGraph data={barDataList} />
+              <LineGraph data={lineDataList} />
+            </div>
+            <div id='sp_graph_text'>
+              <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
+              <p style={{ color: '#515151', paddingLeft: '350px' }}>LineGraph</p>
+            </div>
+          </div>
+          <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
+            <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
+            <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }}>
+              <BarGraph data={barDataList} />
+              <LineGraph data={lineDataList} />
+            </div>
+            <div id='sp_graph_text'>
+              <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
+              <p style={{ color: '#515151', paddingLeft: '350px' }}>LineGraph</p>
             </div>
           </div>
         </div>
