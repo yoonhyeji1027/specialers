@@ -7,111 +7,129 @@ import LineGraph from '../jsx/LineGraph.jsx'
 import BarGraph from '../jsx/BarGraph.jsx'
 
 export default function SalmonPage() {    //여기 주석은 페이지 완성하고 쓸게
+  const [barTempDataList, setBarTempDataList] = useState([]);
+  const [barDoDataList, setBarDoDataList] = useState([]);
+  const [barPhDataList, setBarPhDataList] = useState([]);
+  const [barSalinityDataList, setBarSalinityDataList] = useState([]);
 
-  const [tanks, setTanks] = useState([]);
-  const [barDataList, setBarDataList] = useState([{
-    idx: 0,
-    //mea_dt: '',
-    farm_id: 0,
-    tank_id: 0,
-    do: 0,
-    temperature: 0,
-    ph: 0,
-    //salinity: '',
-    formatted_mea_dt: 0
-  }])
 
-  const [lineDataList, setLineDataList] = useState([]);
-  let _lineDataList = [];
+  const [lineTempDataList, setLineTempDataList] = useState([]);
+  let _lineTempDataList = [];
+  const [lineDoDataList, setLineDoDataList] = useState([]);
+  let _lineDoDataList = [];
+  const [linePhDataList, setLinePhDataList] = useState([]);
+  let _linePhDataList = [];
+  const [lineSalinityDataList, setLineSalinityDataList] = useState([]);
+  let _lineSalinityDataList = [];
 
-  const [pieDataList, setPieDataList] = useState([
-    {
-      "id": "do",
-      "label": "do",
-      value: 0,
-      "color": "hsl(302, 70%, 50%)"
-    },
-    {
-      "id": "temperature",
-      "label": "temperature",
-      value: 0,
-      "color": "hsl(181, 70%, 50%)"
-    },
-    {
-      "id": "ph",
-      "label": "ph",
-      value: 0,
-      "color": "hsl(344, 70%, 50%)"
-    },
-    {
-      "id": "salinity",
-      "label": "salinity",
-      value: 0,
-      "color": "hsl(257, 70%, 50%)"
-    }
-  ])
 
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:3001/tanks');
-      const _barDataList = await response.data.tanks.map((tank, index) => ({
+      const _barTempDataList = await response.data.tanks.map((tank, index) => ({
+        idx: tank.idx ?? 0,
+        //mea_dt: tank.mea_dt,
+        farm_id: tank.farm_id ?? 0,
+        tank_id: tank.tank_id ?? 0,
+        //do: tank.do ?? 0,
+        temperature: tank.temperature ?? 0,
+        //ph: tank.ph ?? 5,
+        //salinity: response.data[key].salinity,
+        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
+      }))
+      const _barDoDataList = await response.data.tanks.map((tank, index) => ({
         idx: tank.idx ?? 0,
         //mea_dt: tank.mea_dt,
         farm_id: tank.farm_id ?? 0,
         tank_id: tank.tank_id ?? 0,
         do: tank.do ?? 0,
-        temperature: tank.temperature ?? 0,
+        //temperature: tank.temperature ?? 0,
+        //ph: tank.ph ?? 5,
+        //salinity: response.data[key].salinity,
+        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
+      }))
+      const _barPhDataList = await response.data.tanks.map((tank, index) => ({
+        idx: tank.idx ?? 0,
+        //mea_dt: tank.mea_dt,
+        farm_id: tank.farm_id ?? 0,
+        tank_id: tank.tank_id ?? 0,
+        //do: tank.do ?? 0,
+        //temperature: tank.temperature ?? 0,
         ph: tank.ph ?? 5,
         //salinity: response.data[key].salinity,
-        formatted_mea_dt: tank.formatted_mea_dt ?? 0
+        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
       }))
-      _lineDataList = [];
+      const _barSalinityDataList = await response.data.tanks.map((tank, index) => ({
+        idx: tank.idx ?? 0,
+        //mea_dt: tank.mea_dt,
+        farm_id: tank.farm_id ?? 0,
+        tank_id: tank.tank_id ?? 0,
+        //do: tank.do ?? 0,
+        //temperature: tank.temperature ?? 0,
+        //ph: tank.ph ?? 5,
+        salinity: tank.salinity ?? 0,
+        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
+      }))
+
+
+
+
+      _lineTempDataList = [];
+      _lineDoDataList = [];
+      _linePhDataList = [];
+      _lineSalinityDataList = [];
+
       response.data.tanks.forEach((tank, index) => {
         const id = tank.tank_id ?? 0;
         const data = { x: tank.formatted_mea_dt ?? 0, y: tank.temperature ?? 0 };
-        const existingItemIndex = _lineDataList.findIndex(item => item.id === id);
+        const existingItemIndex = _lineTempDataList.findIndex(item => item.id === id);
         if (existingItemIndex !== -1) {
-          _lineDataList[existingItemIndex].data.push(data);
+          _lineTempDataList[existingItemIndex].data.push(data);
         } else {
-          _lineDataList.push({ id, data: [data] });
+          _lineTempDataList.push({ id, data: [data] });
         }
       })
-      const _pieDataList = await response.data.tanks.filter((tank, index) => index === 9).map((tank, index) => ([
-        //idx: tank.idx ?? 0,
-        //mea_dt: tank.mea_dt,
-        //farm_id: tank.farm_id ?? 0,
-        //tank_id: tank.tank_id ?? 0,
-        {
-          id: 'do',
-          label: 'do',
-          value: tank.do ?? 0,
-          color: 'hsl(302, 70%, 50%)'
-        }, {
-          id: 'temperature',
-          label: 'temperature',
-          value: tank.temperature ?? 0,
-          color: 'hsl(181, 70%, 50%)'
-        }, {
-          id: 'ph',
-          label: 'ph',
-          value: tank.ph ?? 5,
-          color: 'hsl(344, 70%, 50%)'
-        }, {
-          id: 'salinity',
-          label: 'salinity',
-          value: tank.salinity ?? 0,
-          color: 'hsl(257, 70%, 50%)'
+      response.data.tanks.forEach((tank, index) => {
+        const id = tank.tank_id ?? 0;
+        const data = { x: tank.formatted_mea_dt ?? 0, y: tank.do ?? 0 };
+        const existingItemIndex = _lineDoDataList.findIndex(item => item.id === id);
+        if (existingItemIndex !== -1) {
+          _lineDoDataList[existingItemIndex].data.push(data);
+        } else {
+          _lineDoDataList.push({ id, data: [data] });
         }
-        //formatted_mea_dt: tank.formatted_mea_dt ?? 0
-      ]))
+      })
+      response.data.tanks.forEach((tank, index) => {
+        const id = tank.tank_id ?? 0;
+        const data = { x: tank.formatted_mea_dt ?? 0, y: tank.ph ?? 0 };
+        const existingItemIndex = _linePhDataList.findIndex(item => item.id === id);
+        if (existingItemIndex !== -1) {
+          _linePhDataList[existingItemIndex].data.push(data);
+        } else {
+          _linePhDataList.push({ id, data: [data] });
+        }
+      })
+      response.data.tanks.forEach((tank, index) => {
+        const id = tank.tank_id ?? 0;
+        const data = { x: tank.formatted_mea_dt ?? 0, y: tank.salinity ?? 0 };
+        const existingItemIndex = _lineSalinityDataList.findIndex(item => item.id === id);
+        if (existingItemIndex !== -1) {
+          _lineSalinityDataList[existingItemIndex].data.push(data);
+        } else {
+          _lineSalinityDataList.push({ id, data: [data] });
+        }
+      })
 
-      setTanks(response.data.tanks);
-      setBarDataList(_barDataList);
-      setLineDataList(_lineDataList);
-      setPieDataList(_pieDataList.flat());
+      setBarTempDataList(_barTempDataList);
+      setBarDoDataList(_barDoDataList);
+      setBarPhDataList(_barPhDataList);
+      setBarSalinityDataList(_barSalinityDataList);
 
-      console.log(_pieDataList);
-      console.log(pieDataList);
+      setLineTempDataList(_lineTempDataList);
+      setLineDoDataList(_lineDoDataList);
+      setLinePhDataList(_linePhDataList);
+      setLineSalinityDataList(_lineSalinityDataList);
+
       console.error('새로고침');
     } catch (error) {
       console.error('데이터를 불러오는 중 에러 발생:', error);
@@ -172,8 +190,8 @@ export default function SalmonPage() {    //여기 주석은 페이지 완성하
           <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
             <h3 style={{ color: '#4D606B' }}>DO 데이터</h3>
             <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }} >
-              <BarGraph data={barDataList} />
-              <LineGraph data={lineDataList} />
+              <BarGraph data={barDoDataList} />
+              <LineGraph data={lineDoDataList} />
             </div>
             <div id='sp_graph_text' >
               <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
@@ -181,10 +199,10 @@ export default function SalmonPage() {    //여기 주석은 페이지 완성하
             </div>
           </div>
           <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
-            <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
+            <h3 style={{ color: '#4D606B' }}>Temperature 데이터</h3>
             <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }}>
-              <BarGraph data={barDataList} />
-              <LineGraph data={lineDataList} />
+              <BarGraph data={barTempDataList} />
+              <LineGraph data={lineTempDataList} />
             </div>
             <div id='sp_graph_text'>
               <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
@@ -192,10 +210,10 @@ export default function SalmonPage() {    //여기 주석은 페이지 완성하
             </div>
           </div>
           <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
-            <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
+            <h3 style={{ color: '#4D606B' }}>pH 데이터</h3>
             <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }}>
-              <BarGraph data={barDataList} />
-              <LineGraph data={lineDataList} />
+              <BarGraph data={barPhDataList} />
+              <LineGraph data={linePhDataList} />
             </div>
             <div id='sp_graph_text'>
               <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
@@ -203,10 +221,10 @@ export default function SalmonPage() {    //여기 주석은 페이지 완성하
             </div>
           </div>
           <div className='sp_graph_data'> {/*각 그래프별 묶음*/}
-            <h3 style={{ color: '#4D606B' }}>01_실시간 CCTV</h3>
+            <h3 style={{ color: '#4D606B' }}>Salinity 데이터</h3>
             <div className='sp_graph_view' style={{ width: "1780px", height: "768px" }}>
-              <BarGraph data={barDataList} />
-              <LineGraph data={lineDataList} />
+              <BarGraph data={barSalinityDataList} />
+              <LineGraph data={lineSalinityDataList} />
             </div>
             <div id='sp_graph_text'>
               <p style={{ color: '#515151', paddingRight: '350px' }}>BarGraph</p>
