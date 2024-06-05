@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../css/SalmonPage.css";
 import NavBar from './NavBar.js';
-import PieGraph from '../jsx/PieGraph.jsx'
 import LineGraph from '../jsx/LineGraph.jsx'
 import BarGraph from '../jsx/BarGraph.jsx'
 

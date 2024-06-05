@@ -16,15 +16,16 @@ export default function Inquiry() {
 
     // 데이터 저장 및 전송 함수
     const saveData = () => {
-        if (selectedOption === '분류') {
+        if (typeData === '분류' || !typeData) {
             alert('문의 사항의 분류를 선택하지 않았습니다. 선택 후 제출해 주세요.');
             return;
         }
+        //이름 2글자 미만, 폰번호 9글자 미만, 이메일 3글자 미만, 이메일주소 직접입력인경우, 제목 2글자 미만, 내용 5글자 미만
         if (!nameData || nameData.length < 2 || !phoneNumberData || phoneNumberData.length < 9 || !emailData || emailData.length < 3 || (!emailAddressData && selectedEmail === '직접입력') || !titleData || titleData.length < 2 || !contentsData || contentsData.length < 5) {
             alert('입력한 내용 중 글자 수가 제한보다 적습니다. 모든 항목을 확인 후 다시 제출해 주세요.');
             return;
         }
-        if (selectedEmail === '직접입력' && !emailAddressData) {
+        if ((selectedEmail === '직접입력' || !selectedEmail) && !emailAddressData) {
             alert('이메일의 주소를 작성하지 않았습니다. 작성 후 제출해 주세요.');
             return;
         }
