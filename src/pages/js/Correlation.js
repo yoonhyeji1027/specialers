@@ -85,38 +85,68 @@ export default function Correlation() {
           <div className='c_text_box' style={{borderRadius:'5%'}}>
             <div id='text'>
               <p>PH, DO</p>
+<<<<<<< HEAD
               <p style={{ marginTop:'-10px' }}>결과:</p>
               <p style={{ marginLeft: '30px', marginTop:'-15px' }}>PH와 DO의 상관계수 값은 {phDo}입니다. 이 경우 {phDo > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
+=======
+              <p>결과:</p>
+              <p style={{ marginLeft: '30px' }}>PH와 DO의 상관계수 값은 {phDo}입니다. 이 경우 {phDo > 0 ? '양의 상관관계' : '음의 상관관계'}의 상관관계를 가집니다.</p>
+>>>>>>> 8652847283414edf6e911eddea1a3ae70bda7258
             </div>
 
             <div id='text'>
               <p>TMP, PH</p>
+<<<<<<< HEAD
               <p style={{ marginTop:'-10px' }}>결과:</p>
               <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>TMP와 PH의 상관계수 값은 {tempPh}입니다. 이 경우 {tempPh > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
+=======
+              <p>결과:</p>
+              <p style={{ marginLeft: '30px' }}>TMP와 PH의 상관계수 값은 {tempPh}입니다. 이 경우 {tempPh > 0 ? '양의 상관관계' : '음의 상관관계'}의 상관관계를 가집니다.</p>
+>>>>>>> 8652847283414edf6e911eddea1a3ae70bda7258
             </div>
 
             <div id='text'>
               <p>SL, DO</p>
+<<<<<<< HEAD
               <p style={{ marginTop:'-10px' }}>결과:</p>
               <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>SL과 DO의 상관계수 값은 {salinityDo}입니다. 이 경우 {salinityDo > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
+=======
+              <p>결과:</p>
+              <p style={{ marginLeft: '30px' }}>SL과 DO의 상관계수 값은 {salinityDo}입니다. 이 경우 {salinityDo > 0 ? '양의 상관관계' : '음의 상관관계'}의 상관관계를 가집니다.</p>
+>>>>>>> 8652847283414edf6e911eddea1a3ae70bda7258
             </div>
 
             <div id='text'>
               <p>TMP, DO</p>
+<<<<<<< HEAD
               <p style={{ marginTop:'-10px' }}>결과:</p>
               <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>TMP와 DO의 상관계수 값은 {tempDo}입니다. 이 경우 {tempDo > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
+=======
+              <p>결과:</p>
+              <p style={{ marginLeft: '30px' }}>TMP와 DO의 상관계수 값은 {tempDo}입니다. 이 경우 {tempDo > 0 ? '양의 상관관계' : '음의 상관관계'}의 상관관계를 가집니다.</p>
+>>>>>>> 8652847283414edf6e911eddea1a3ae70bda7258
             </div>
 
             <div id='text'>
               <p>SL, PH</p>
+<<<<<<< HEAD
               <p style={{ marginTop:'-10px' }}>결과:</p>
               <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>SL과 DO의 상관계수 값은 {salinityPh}입니다. 이 경우 {salinityPh > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
+=======
+              <p>결과:</p>
+              <p style={{ marginLeft: '30px' }}>SL과 DO의 상관계수 값은 {salinityPh}입니다. 이 경우 {salinityPh > 0 ? '양의 상관관계' : '음의 상관관계'}의 상관관계를 가집니다.</p>
+>>>>>>> 8652847283414edf6e911eddea1a3ae70bda7258
             </div>
 
             <div id='text'>
               <p>SL, TML</p>
+<<<<<<< HEAD
               <p style={{ marginTop:'-10px' }}>결과:</p>
               <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>SL과 TMP의 상관계수 값은 {salinityTemp}입니다. 이 경우 {salinityTemp > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
+=======
+              <p>결과:</p>
+              <p style={{ marginLeft: '30px' }}>SL과 TMP의 상관계수 값은 {salinityTemp}입니다. 이 경우 {salinityTemp > 0 ? '양의 상관관계' : '음의 상관관계'}의 상관관계를 가집니다.</p>
+>>>>>>> 8652847283414edf6e911eddea1a3ae70bda7258
             </div>
 
           </div>
