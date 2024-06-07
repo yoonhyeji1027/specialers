@@ -1,44 +1,4 @@
-@media screen and (max-width: 765px) and (min-width: 300px) {
-    .table-container{
-        width: 100%;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
 
-    table{
-        width:100%;
-    }
-}
-.navbar{
-    position: fixed;
-    top: 0;  
-    width: 100%;
-    background-color: transparent !important;
-    z-index: 2;
-}
-.navbar ul{
-    margin-left: 35%;
-    padding: 10px 0px;
-    text-align: center;
-    list-style: none;
-    text-decoration: none;
-}
-.navbar-nav{
-    width: 1700px;
-}
-.navbar ul li{
-    padding: 0px 15px;
-    font-size: 14px;
-    display: inline-block;
-    margin: 0px 15px;
-    
-}
-.navbar-not-fixed {
-    position: relative;
-    width: 100%;
-    z-index: 1000;
-  }
-  
   @media screen and (max-width: 765px) and (min-width: 300px) {
     .table-container{
         width: 100%;
@@ -87,7 +47,7 @@
     flex-direction: column; 
     min-width: 160px; 
     z-index: 1;
-    margin-left: 1140px;
+    margin-left: 1125px;
     background-color: transparent; /* 서브 메뉴 배경 투명하게 설정 */
 }
 

@@ -6,7 +6,7 @@ import "../css/Outlier.css";
 
 export default function Outlier() {
   const [selectedOption, setSelectedOption] = useState('전체');
-  const [displayOption, setDisplayOption] = useState(null);
+  const [displayOption, setDisplayOption] = useState('전체');
 
   const [tempDataList, setTempDataList] = useState([]);
   let _tempDataList = [];

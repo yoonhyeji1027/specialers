@@ -7,6 +7,15 @@ import "../css/Correlation.css";
 export default function Correlation() {
   const [localHeatmapDataList, setLocalHeatmapDataList] = useState([]);
 
+  const [phDo, setPhDo] = useState([]);
+  const [tempPh, setTempPh] = useState([]);
+  const [tempDo, setTempDo] = useState([]);
+  const [salinityPh, setSalinityPh] = useState([]);
+  const [salinityDo, setSalinityDo] = useState([]);
+  const [salinityTemp, setSalinityTemp] = useState([]);
+
+
+
   const transformDataForHeatMap = (data) => {
     if (!data || !data.correlation_matrix) {    //받아온 data가 존재하는지, data객체에 correlation_matrix속성이 있는지 검사 후 없으면 빈 배별 반환
       return [];
@@ -27,7 +36,6 @@ export default function Correlation() {
           //correlation_matrix의 variable1값과 map()함수로 저장한 variable1값이 같고
           //correlation_matrix의 variable2값과 map()함수로 저장한 variable2값이 같으면 data의 correlation요소의 값을
           //아니면 0을 반환한다.
-
           return { x: variable2, y: parseFloat(correlation.toFixed(3)) };   //x값에는 variable2를 y값에는 correlation값의 소숫점3번째 자리까지 float형으로 저장한 후 반환
         })
       };
@@ -40,6 +48,12 @@ export default function Correlation() {
       if (response.data && response.data.success && response.data.correlation_matrix) {   //response에 data가 있고, data에 success가 있고, correlation_matrix요소가 있으면
         setLocalHeatmapDataList(transformDataForHeatMap(response.data));  //transformDataForHeatMap함수로 response의 데이터에 값이 있는지 확인 후
         //setLocalHeatmapDataList함수로 localHeatmapDataList변수에 저장.
+        setPhDo(response.data.correlation_matrix[1].correlation.toFixed(3));
+        setTempPh(response.data.correlation_matrix[6].correlation.toFixed(3));
+        setTempDo(response.data.correlation_matrix[2].correlation.toFixed(3));
+        setSalinityPh(response.data.correlation_matrix[13].correlation.toFixed(3));
+        setSalinityDo(response.data.correlation_matrix[12].correlation.toFixed(3));
+        setSalinityTemp(response.data.correlation_matrix[14].correlation.toFixed(3));
       } else {
         console.error('Unexpected response data:', response.data);
         setLocalHeatmapDataList([]); // 예외처리
@@ -71,38 +85,38 @@ export default function Correlation() {
           <div className='c_text_box' style={{borderRadius:'5%'}}>
             <div id='text'>
               <p>PH, DO</p>
-              <p>결과:</p>
-              <p style={{ marginLeft: '30px' }}>PH와 DO의 상관계수 값은 { }입니다. 이 경우 { }의 상관관계를 가집니다.</p>
+              <p style={{ marginTop:'-10px' }}>결과:</p>
+              <p style={{ marginLeft: '30px', marginTop:'-15px' }}>PH와 DO의 상관계수 값은 {phDo}입니다. 이 경우 {phDo > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
             </div>
 
             <div id='text'>
               <p>TMP, PH</p>
-              <p>결과:</p>
-              <p style={{ marginLeft: '30px' }}>TMP와 PH의 상관계수 값은 { }입니다. 이 경우 { }의 상관관계를 가집니다.</p>
+              <p style={{ marginTop:'-10px' }}>결과:</p>
+              <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>TMP와 PH의 상관계수 값은 {tempPh}입니다. 이 경우 {tempPh > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
             </div>
 
             <div id='text'>
               <p>SL, DO</p>
-              <p>결과:</p>
-              <p style={{ marginLeft: '30px' }}>SL과 DO의 상관계수 값은 { }입니다. 이 경우 { }의 상관관계를 가집니다.</p>
+              <p style={{ marginTop:'-10px' }}>결과:</p>
+              <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>SL과 DO의 상관계수 값은 {salinityDo}입니다. 이 경우 {salinityDo > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
             </div>
 
             <div id='text'>
               <p>TMP, DO</p>
-              <p>결과:</p>
-              <p style={{ marginLeft: '30px' }}>TMP와 DO의 상관계수 값은 { }입니다. 이 경우 { }의 상관관계를 가집니다.</p>
+              <p style={{ marginTop:'-10px' }}>결과:</p>
+              <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>TMP와 DO의 상관계수 값은 {tempDo}입니다. 이 경우 {tempDo > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
             </div>
 
             <div id='text'>
               <p>SL, PH</p>
-              <p>결과:</p>
-              <p style={{ marginLeft: '30px' }}>SL과 DO의 상관계수 값은 { }입니다. 이 경우 { }의 상관관계를 가집니다.</p>
+              <p style={{ marginTop:'-10px' }}>결과:</p>
+              <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>SL과 DO의 상관계수 값은 {salinityPh}입니다. 이 경우 {salinityPh > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
             </div>
 
             <div id='text'>
               <p>SL, TML</p>
-              <p>결과:</p>
-              <p style={{ marginLeft: '30px' }}>SL과 TMP의 상관계수 값은 { }입니다. 이 경우 { }의 상관관계를 가집니다.</p>
+              <p style={{ marginTop:'-10px' }}>결과:</p>
+              <p style={{ marginLeft: '30px', marginTop:'-15px'  }}>SL과 TMP의 상관계수 값은 {salinityTemp}입니다. 이 경우 {salinityTemp > 0 ? '양의 상관관계' : '음의 상관관계'}를 가집니다.</p>
             </div>
 
           </div>

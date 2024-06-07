@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding:0;
+    font-family: "Noto Sans KR", sans-serif;
 }
 @media screen and (max-width: 765px) and (min-width: 300px) {
     .table-container{
@@ -29,7 +30,7 @@ fieldset {
 .c_text_box{
     border: 2px solid #000;
     text-align: left;
-    line-height: 10px;
+    line-height: 20px;
     padding: 10px 5px;
     width: 750px;
     margin-left: 40px;
@@ -41,9 +42,10 @@ fieldset {
 
 
 .graph_view{
-    margin-top: -830px;
+    margin-top: -845px;
     margin-left: 800px;
     width: 1050px;
+    margin-bottom: 80px;
 }
 
 

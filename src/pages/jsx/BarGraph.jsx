@@ -13,11 +13,11 @@ const BarGraph = ({ data/* see data tab */ }) => (
         keys={[
             //"mea_dt",
             //"farm_id",
-            "tank_id",
+            //"tank_id",
             "do",
             "temperature",
             "ph",
-            //"salinity",
+            "salinity",
             //"formatted_mea_dt"
         ]}
         indexBy={"idx"}

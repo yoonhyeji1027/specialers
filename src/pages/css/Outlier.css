@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding:0;
+    font-family: "Noto Sans KR", sans-serif;
 }
 @media screen and (max-width: 765px) and (min-width: 300px) {
     .table-container{
@@ -29,9 +30,11 @@ fieldset {
     border: 1px solid #000;
     border-radius: 50px;
     margin-left: 20px;
-    width: 100px;
+    width: 80px;
     height: 40px;
     background-color: transparent;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .o_graph_board{
